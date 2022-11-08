@@ -1,7 +1,7 @@
 import AccountHistory from "../components/AccountHistory";
 import Alaram from "../components/Alaram";
 import GraphAccount from "../components/GraphAccount";
-import NewAccountHistory from "../components/NewAccountHistory";
+import CreateAccountHistory from "../components/CreateAccountHistory";
 import Title from "../components/Title";
 import styled from "styled-components";
 import Total from "../components/Total";
@@ -30,7 +30,7 @@ function Main () {
         <Total />
         <GraphAccount />
         <AccountHistory />
-        <NewAccountHistory />
+        <CreateAccountHistory />
       </Wrapper>
     );
 }
