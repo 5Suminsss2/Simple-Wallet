@@ -25,6 +25,7 @@ function CreateAccountHistory() {
   const CreateAccountHistoryContainer = styled.div`
     width: 340px;
     padding: 15px;
+    margin-bottom: 30px;
     border-radius: 10px;
     background-color: #d9d9d9;
   `;
