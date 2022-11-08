@@ -2,7 +2,7 @@ function NewAccountHistory() {
   return (
     <>
       <button>add</button>
-      <div>NewAccountHistory</div>;
+      <div>NewAccountHistory</div>
     </>
   );
 }
