@@ -1,5 +1,4 @@
 import { AiFillStar, AiFillBell } from "react-icons/ai";
-import { TbStar } from "react-icons/tb";
 import styled from "styled-components";
 
 function Title () {
