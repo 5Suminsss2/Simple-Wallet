@@ -4,6 +4,7 @@ import GraphAccount from "../components/GraphAccount";
 import NewAccountHistory from "../components/NewAccountHistory";
 import Title from "../components/Title";
 import styled from "styled-components";
+import Total from "../components/Total";
 
 function Main () {
 
@@ -26,6 +27,7 @@ function Main () {
       <Wrapper>
         <Title />
         <Alaram />
+        <Total />
         <GraphAccount />
         <AccountHistory />
         <NewAccountHistory />
