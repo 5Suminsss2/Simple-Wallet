@@ -1,12 +1,8 @@
-import Modal from "./Modal";
+import GlobalModal from "./GlobalModal";
 
 
 function AlarmModal() {
-  return (
-    <Modal>
-        AlarmModal
-    </Modal>
-  );
+  return <GlobalModal>AlarmModal</GlobalModal>;
 }
 
 export default AlarmModal;

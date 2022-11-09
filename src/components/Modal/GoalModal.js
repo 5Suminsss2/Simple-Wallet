@@ -1,11 +1,7 @@
-import Modal from "./Modal";
+import GlobalModal from "./GlobalModal";
 
 function GoalModal(params) {
-    return(
-        <Modal>
-            GoalModal
-        </Modal>
-    )
+    return <GlobalModal>GoalModal</GlobalModal>;
 }
 
 export default GoalModal;

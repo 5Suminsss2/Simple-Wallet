@@ -1,4 +1,4 @@
-function Modal() {
+function GlobalModal() {
     return(
         <>
             <div>modal</div>
@@ -6,4 +6,4 @@ function Modal() {
     )
 }
 
-export default Modal;
+export default GlobalModal;
