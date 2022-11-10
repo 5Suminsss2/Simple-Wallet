@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import accountHistoryData from "../data/accountHistoryData.json";
+import accountHistoryData from "../../data/accountHistoryData.json";
 import AccountHistoryCard from "./AccountHistoryCard";
 
 function AccountHistory() {

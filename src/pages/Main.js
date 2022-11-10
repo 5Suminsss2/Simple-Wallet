@@ -1,4 +1,4 @@
-import AccountHistory from "../components/AccountHistory";
+import AccountHistory from "../components/AccountHistory/AccountHistory";
 import Alaram from "../components/Alaram";
 import GraphAccount from "../components/GraphAccount";
 import CreateAccountHistory from "../components/CreateAccountHistory";
