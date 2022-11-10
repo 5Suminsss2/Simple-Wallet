@@ -1,0 +1,16 @@
+{
+    "accountHistoryData": [
+        {
+            "accountType": "Deposit",
+            "date":"2022-10-10",
+            "accountContents": "알바비",
+            "price": 1000000
+        },
+        {
+            "accountType": "Withdraw",
+            "date":"2022-10-11",
+            "accountContents": "교촌치킨 허니콤보",
+            "price": 21000
+        }
+    ]
+}
