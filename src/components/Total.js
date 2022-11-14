@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { useRecoilValue } from "recoil";
-import { datasetState } from "../store/atom";
+import { useRecoilValue, useRecoilState } from "recoil";
+import { datasetState, totalState } from "../store/atom";
 
 function Total() {
 
@@ -53,34 +53,39 @@ function Total() {
 
   // 입출금 내역 데이터 가져오기
   const dataset = useRecoilValue(datasetState);
+  const [total, setTotal] = useRecoilState(totalState);
   let deposit = 0;
   let withDraw = 0;
 
   // 입출금 내역 데이터 계산
   dataset.map(function (element) {
     if (element.accountType === "Deposit") {
-      deposit += element.price
+      deposit += Number(element.price);
     } else {
-      withDraw += element.price
+      withDraw += Number(element.price);
     }
   });
 
-  let total = (deposit - withDraw).toLocaleString("ko-KR");
+  setTotal(deposit - withDraw);
 
   return (
     <TotalContainer>
       <TotalItem>
         <TotalTitle>Total</TotalTitle>
-        <TotalAccount>{total} 원</TotalAccount>
+        <TotalAccount>{total.toLocaleString("ko-KR")} 원</TotalAccount>
       </TotalItem>
       <SeperateTotalContainer>
         <SeperateTotalItems>
           <SeperateTotalTitle>총 지출</SeperateTotalTitle>
-          <SeperateTotalAccount>- {withDraw} 원</SeperateTotalAccount>
+          <SeperateTotalAccount>
+            - {withDraw.toLocaleString("ko-KR")} 원
+          </SeperateTotalAccount>
         </SeperateTotalItems>
         <SeperateTotalItems>
           <SeperateTotalTitle>총 입금</SeperateTotalTitle>
-          <SeperateTotalAccount>+ {deposit} 원</SeperateTotalAccount>
+          <SeperateTotalAccount>
+            + {deposit.toLocaleString("ko-KR")} 원
+          </SeperateTotalAccount>
         </SeperateTotalItems>
       </SeperateTotalContainer>
     </TotalContainer>

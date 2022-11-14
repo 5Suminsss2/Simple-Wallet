@@ -34,6 +34,11 @@ let alarmDatasetState = atom({
   default: alarmData["alarmData"],
 });
 
+// 총 금액 데이터
+let totalState = atom({
+  key: "totalState",
+  default: 0
+})
 
 export {
   alarmModalState,
@@ -41,4 +46,5 @@ export {
   datasetState,
   goalDatasetState,
   alarmDatasetState,
+  totalState,
 };

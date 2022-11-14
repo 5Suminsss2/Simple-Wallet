@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { AiFillStar } from "react-icons/ai";
+import { useRecoilValue } from "recoil";
+import { totalState } from "../../store/atom";
 
 function GoalCard({ data }) {
 
@@ -21,10 +23,21 @@ function GoalCard({ data }) {
     font-size: 13px;
   `; 
 
+  const total = useRecoilValue(totalState);
+  const remainingPrice =total - data.price;
+
   return (
     <AlarmItems>
       <AiFillStar size="15" color="#d9d9d9" />
-      <AlarmText>'{data.goalContents}' 목표까지 200,000원!</AlarmText>
+      {remainingPrice >= 0 || remainingPrice === 0 ? (
+        <AlarmText>
+          '{data.goalContents}' 목표 달성!
+        </AlarmText>
+      ) : (
+        <AlarmText>
+          '{data.goalContents}' 목표까지 {" "} { Math.abs(remainingPrice).toLocaleString("ko-KR")}원 남았어요!
+        </AlarmText>
+      )}
     </AlarmItems>
   );
 }
