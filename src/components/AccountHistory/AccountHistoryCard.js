@@ -30,7 +30,7 @@ function AccountHistoryCard({data}) {
 
     return (
         <AccountHistoryDetail>
-        <AccountHistoryDate>{data.date}</AccountHistoryDate>
+        <AccountHistoryDate>{data.year}-{data.month}-{data.date}</AccountHistoryDate>
         <AccountHistoryContents>
             <div>{data.accountContents}</div>
             {data.accountType === "Deposit" ? (
