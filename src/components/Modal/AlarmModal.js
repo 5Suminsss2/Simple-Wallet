@@ -1,16 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { alarmDatasetState, alarmModalState } from "../../store/atom";
 import GlobalModal from "./GlobalModal";
 
-function AlarmModal() {
-  const [deposit, setDeposit] = useState(false); // 입출금 버튼
-
-  // 입금 버튼 눌렀을 때
-  const handleDeposit = () => {
-    setDeposit(!deposit);
-  };
-
-  // CSS
+// CSS
   const Label = styled.label`
     font-size: 14px;
   `;
@@ -62,14 +56,121 @@ function AlarmModal() {
     margin-bottom: ${(props) => props.marginBottom || 0};
   `;
 
+  const ModalButtonContainer = styled.div`
+    margin-top: 30px;
+    text-align: center;
+  `;
+
+  const ModalButton = styled.button`
+    width: 80px;
+    height: 35px;
+    margin-right: ${(props) => props.marginRight};
+    background-color: ${(props) => props.backgroundColor};
+    border: none;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    cursor: pointer;
+    &:hover {
+      background-color: grey;
+    }
+  `;
+
+function AlarmModal() {
+  const [deposit, setDeposit] = useState(true); // 입출금 버튼
+  const [alarmOpen, setAlarmOpen] = useRecoilState(alarmModalState); // 알람 모달 상태값 가져오기
+
+  // 기존 거래 내역
+  const [dataset, setDataset] = useRecoilState(alarmDatasetState);
+
+  // 새 거래 내역
+  const [inputs, setInputs] = useState({
+    accountType: "deposit",
+    year: "",
+    month: "",
+    date: "",
+    alarmContents: "",
+    price: 0,
+  });
+
+  const { year, month, date, alarmContents, price } = inputs;
+
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
+
+  // 입출금 버튼 눌렀을 때
+  const handleDeposit = () => {
+    setDeposit(!deposit);
+  };
+
+  // 새 거래내역 등록 버튼 눌렀을 때
+  const handleSubmit = () => {
+    setDataset([inputs, ...dataset]);
+
+    // input 값 초기화
+    setInputs({
+      accountType: "Deposit",
+      year: "",
+      month: "",
+      date: "",
+      accountContents: "",
+      price: 0,
+    });
+    setDeposit(true);
+
+    setAlarmOpen(false);
+  };
+
+  // 새 거래내역 닫기 버튼 눌렀을 때
+  const handleCancel = () => {
+    if (alarmOpen === true) {
+      setAlarmOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    // 출입금 버튼 눌렀을 때 거래내역 업데이트
+    if (deposit === true) {
+      setInputs({
+        ...inputs,
+        ["accountType"]: "Deposit",
+      });
+    } else {
+      setInputs({
+        ...inputs,
+        ["accountType"]: "Withdraw",
+      });
+    }
+  }, [deposit]);
+
   return (
     <GlobalModal title="알람 설정" icon="alarm">
-      <form>
+      <form onSubmit={handleSubmit}>
         <Label>날짜</Label>
         <DateInputBox>
-          <DateInput placeholder="2023" />
-          <DateInput placeholder="01" />
-          <DateInput placeholder="01" />
+          <DateInput
+            placeholder="2023"
+            name="year"
+            value={year}
+            onChange={onChange}
+          />
+          <DateInput
+            placeholder="01"
+            name="month"
+            value={month}
+            onChange={onChange}
+          />
+          <DateInput
+            placeholder="01"
+            name="date"
+            value={date}
+            onChange={onChange}
+          />
         </DateInputBox>
         <Label>내용</Label>
         {deposit === true ? (
@@ -87,11 +188,40 @@ function AlarmModal() {
             </ContentButton>
           </ContentButtonBox>
         )}
-        <Input placeholder="페퍼로니 피자 1판" marginBottom="10px" />
+        <Input
+          placeholder="페퍼로니 피자 1판"
+          marginBottom="10px"
+          name="alarmContents"
+          value={alarmContents}
+          onChange={onChange}
+        />
         <br />
         <Label>금액</Label>
-        <Input placeholder="15,000" marginTop="5px" />
+        <Input
+          type="number"
+          placeholder="15,000"
+          marginTop="5px"
+          name="price"
+          value={price === 0 ? null : price}
+          onChange={onChange}
+        />
       </form>
+      <ModalButtonContainer>
+        <ModalButton
+          marginRight="10px"
+          backgroundColor="#fff"
+          onClick={handleSubmit}
+        >
+          등록
+        </ModalButton>
+        <ModalButton
+          marginRight="10px"
+          backgroundColor="#d9d9d9"
+          onClick={handleCancel}
+        >
+          닫기
+        </ModalButton>
+      </ModalButtonContainer>
     </GlobalModal>
   );
 }

@@ -56,11 +56,11 @@ import { goalModalState, goalDatasetState } from "../../store/atom";
 
 function GoalModal() { 
 
-  // 알람 모달, 목표 모달 각각 상태값 가져오기
+  // 목표 모달 각각 상태값 가져오기
   const [goalOpen, setGoalOpen] = useRecoilState(goalModalState);
 
   // 닫기 버튼 눌렀을 때
-  const handleCanceled = () => {
+  const handleCancel = () => {
     if (goalOpen === true) {
       setGoalOpen(false);
     }
@@ -115,6 +115,8 @@ function GoalModal() {
       goalContents: "",
       price: 0,
     });
+
+    setGoalOpen(false);
 
   };
 
@@ -192,7 +194,7 @@ function GoalModal() {
         <ModalButton
           marginRight="10px"
           backgroundColor="#d9d9d9"
-          onClick={handleCanceled}
+          onClick={handleCancel}
         >
           닫기
         </ModalButton>

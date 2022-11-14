@@ -60,14 +60,6 @@ function GlobalModal({ title, children, icon }) {
                 <HeaderTitle>{title}</HeaderTitle>
                 </Header>
                 <ModalContents>{children}</ModalContents>
-                {/* <ModalButtonContainer>
-                    <ModalButton marginRight="10px" backgroundColor="#fff">
-                        등록
-                    </ModalButton>
-                    <ModalButton marginRight="10px" backgroundColor="#d9d9d9" onClick={handleCanceled}>
-                        닫기
-                    </ModalButton>
-                </ModalButtonContainer> */}
             </ModalContainer>
         </Modal>
   );
