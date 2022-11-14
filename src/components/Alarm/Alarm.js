@@ -1,12 +1,15 @@
 import { AiFillStar, AiFillBell } from "react-icons/ai";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { alarmDatasetState, goalDatasetState } from "../../store/atom";
+import GoalCard from "./GoalCard";
+import AlarmCard from "./AlarmCard";
 
 function Alaram() {
-  
   // CSS
   const AlaramContainer = styled.section`
     margin-top: 10px;
-  `
+  `;
   const AlaramItems = styled.div`
     display: flex;
     align-items: center;
@@ -22,18 +25,26 @@ function Alaram() {
   const AlarmText = styled.div`
     margin-left: 5px;
     font-size: 13px;
-  `
+  `;
+
+  // 목표 데이터 가져오기
+  const goalDataset = useRecoilValue(goalDatasetState);
+
+  const goalCard = (data) => {
+    return <GoalCard data={data} />;
+  };
+
+  // 알람 데이터 가져오기
+  const alarmDataset = useRecoilValue(alarmDatasetState);
+
+  const alarmCard = (data) => {
+    return <AlarmCard data={data} />;
+  };
 
   return (
     <AlaramContainer>
-      <AlaramItems>
-        <AiFillStar size="15" color="#d9d9d9" />
-        <AlarmText>'신한 적금 납입'까지 3일 남았습니다.</AlarmText>
-      </AlaramItems>
-      <AlaramItems>
-        <AiFillBell size="15" color="#d9d9d9" />
-        <AlarmText>‘제주도 여행가기’ 목표까지 200,000원!</AlarmText>
-      </AlaramItems>
+      {goalDataset.map(goalCard)}
+      {alarmDataset.map(alarmCard)}
     </AlaramContainer>
   );
 }

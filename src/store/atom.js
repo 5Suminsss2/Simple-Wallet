@@ -1,6 +1,8 @@
 // atom.js
 import { atom } from "recoil";
 import accountHistoryData from "../data/accountHistoryData.json";
+import goalData from "../data/goalData.json";
+import alarmData from "../data/alarmData.json";
 
 // 알람 모달 
  let alarmModalState = atom({
@@ -20,4 +22,23 @@ let datasetState = atom({
   default: accountHistoryData["accountHistoryData"],
 });
 
-export { alarmModalState, goalModalState, datasetState };
+// 목표 데이터
+let goalDatasetState = atom({
+  key: "goalDataset",
+  default: goalData["goalData"],
+});
+
+// 알람 데이터
+let alarmDatasetState = atom({
+  key: "alarmDataset",
+  default: alarmData["alarmData"],
+});
+
+
+export {
+  alarmModalState,
+  goalModalState,
+  datasetState,
+  goalDatasetState,
+  alarmDatasetState,
+};

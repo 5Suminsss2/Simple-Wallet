@@ -1,5 +1,5 @@
 import AccountHistory from "../components/AccountHistory/AccountHistory";
-import Alaram from "../components/Alaram";
+import Alaram from "../components/Alarm/Alarm";
 import GraphAccount from "../components/GraphAccount";
 import CreateAccountHistory from "../components/CreateAccountHistory";
 import Title from "../components/Title";
