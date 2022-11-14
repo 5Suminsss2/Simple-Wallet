@@ -154,13 +154,11 @@ function CreateAccountHistory({onSubmit}) {
   useEffect(()=>{
     // 출입금 버튼 눌렀을 때 거래내역 업데이트
     if (deposit === true) {
-      console.log("enter ture");
       setInputs({
         ...inputs,
         ["accountType"]: "Deposit",
       });
     } else {
-      console.log(deposit, "enter false");
       setInputs({
         ...inputs,
         ["accountType"]: "Withdraw",
