@@ -3,7 +3,7 @@ import styled from "styled-components";
 function AccountHistoryCard({data}) {
 
     // 화폐 3자리마다 콤마 넣기
-    const price = data.price.toLocaleString("ko-KR");
+    const price = Number(data.price).toLocaleString("ko-KR");
     
     // CSS
     const AccountHistoryDetail = styled.div`

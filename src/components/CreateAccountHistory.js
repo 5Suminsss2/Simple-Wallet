@@ -105,7 +105,7 @@ function CreateAccountHistory({onSubmit}) {
     month: "",
     date: "",
     accountContents: "",
-    price: ""
+    price: 0
   });
   
   const { year, month, date, accountContents, price  } = inputs;
@@ -139,7 +139,7 @@ function CreateAccountHistory({onSubmit}) {
       month: "",
       date: "",
       accountContents: "",
-      price: "",
+      price: 0,
     });
     setDeposit(true);
 
@@ -222,10 +222,11 @@ function CreateAccountHistory({onSubmit}) {
               <br />
               <Label>금액</Label>
               <Input
+                type="number"
                 placeholder="15,000"
                 marginTop="5px"
                 name="price"
-                value={price}
+                value={ (price===0)? null:price}
                 onChange={onChange}
               />
             </form>
