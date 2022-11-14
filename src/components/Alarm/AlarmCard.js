@@ -3,7 +3,7 @@ import { AiFillBell } from "react-icons/ai";
 
 function GoalCard({ data }) {
   // CSS
-  const AlaramItems = styled.div`
+  const AlarmItems = styled.div`
     display: flex;
     align-items: center;
     height: 30px;
@@ -21,10 +21,10 @@ function GoalCard({ data }) {
   `;
 
   return (
-    <AlaramItems>
+    <AlarmItems>
       <AiFillBell size="15" color="#d9d9d9" />
       <AlarmText>'{data.alarmContents}'까지 3일 남았습니다.</AlarmText>
-    </AlaramItems>
+    </AlarmItems>
   );
 }
 

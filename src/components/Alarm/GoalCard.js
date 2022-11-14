@@ -4,7 +4,7 @@ import { AiFillStar } from "react-icons/ai";
 function GoalCard({ data }) {
 
   // CSS
-  const AlaramItems = styled.div`
+  const AlarmItems = styled.div`
     display: flex;
     align-items: center;
     height: 30px;
@@ -22,10 +22,10 @@ function GoalCard({ data }) {
   `; 
 
   return (
-    <AlaramItems>
+    <AlarmItems>
       <AiFillStar size="15" color="#d9d9d9" />
       <AlarmText>'{data.goalContents}' 목표까지 200,000원!</AlarmText>
-    </AlaramItems>
+    </AlarmItems>
   );
 }
 

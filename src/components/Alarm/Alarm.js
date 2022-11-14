@@ -5,12 +5,12 @@ import { alarmDatasetState, goalDatasetState } from "../../store/atom";
 import GoalCard from "./GoalCard";
 import AlarmCard from "./AlarmCard";
 
-function Alaram() {
+function Alarm() {
   // CSS
-  const AlaramContainer = styled.section`
+  const AlarmContainer = styled.section`
     margin-top: 10px;
   `;
-  const AlaramItems = styled.div`
+  const AlarmItems = styled.div`
     display: flex;
     align-items: center;
     height: 30px;
@@ -42,11 +42,11 @@ function Alaram() {
   };
 
   return (
-    <AlaramContainer>
+    <AlarmContainer>
       {goalDataset.map(goalCard)}
       {alarmDataset.map(alarmCard)}
-    </AlaramContainer>
+    </AlarmContainer>
   );
 }
 
-export default Alaram;
+export default Alarm;

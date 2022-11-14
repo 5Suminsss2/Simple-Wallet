@@ -1,5 +1,5 @@
 import AccountHistory from "../components/AccountHistory/AccountHistory";
-import Alaram from "../components/Alarm/Alarm";
+import Alarm from "../components/Alarm/Alarm";
 import GraphAccount from "../components/GraphAccount";
 import CreateAccountHistory from "../components/CreateAccountHistory";
 import Title from "../components/Title";
@@ -35,7 +35,7 @@ function Main() {
   return (
     <Wrapper>
       <Title />
-      <Alaram />
+      <Alarm />
       <Total />
       <GraphAccount />
       <AccountHistory />
