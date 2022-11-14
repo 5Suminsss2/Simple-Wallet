@@ -2,8 +2,8 @@ import { AiFillStar, AiFillBell } from "react-icons/ai";
 import styled from "styled-components";
 
 function Alaram() {
+  
   // CSS
-
   const AlaramContainer = styled.section`
     margin-top: 10px;
   `
