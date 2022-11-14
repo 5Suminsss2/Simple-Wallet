@@ -1,25 +1,9 @@
 import styled from "styled-components";
 import { AiFillStar, AiFillBell } from "react-icons/ai";
 import { alarmModalState, goalModalState } from "../../store/atom";
-import { useRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 
-function GlobalModal({ title, children, icon }) {
-    
-    // 알람 모달, 목표 모달 각각 상태값 가져오기
-    const [alarmOpen, setAlarmOpen] = useRecoilState(alarmModalState); 
-    const [goalOpen, setGoalOpen] = useRecoilState(goalModalState); 
-
-    // 닫기 버튼 눌렀을 때
-    const handleCanceled = () => {
-        if (alarmOpen === true) {
-            setAlarmOpen(false)
-        }
-        else if(goalOpen === true) {
-            setGoalOpen(false)
-        }
-    }
-
-    //CSS
+//CSS
     const Modal = styled.div`
       display: ${(props) => props.display};
       align-items: center;
@@ -58,25 +42,11 @@ function GlobalModal({ title, children, icon }) {
         background-color: #d9d9d9;
     `
 
-    const ModalButtonContainer = styled.div`
-        margin-top: 30px;
-        text-align: center;
-    `
-
-    const ModalButton = styled.button`
-      width: 80px;
-      height: 35px;
-      margin-right: ${(props) => props.marginRight};
-      background-color: ${(props) => props.backgroundColor};
-      border: none;
-      border-radius: 10px;
-      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-      cursor: pointer;
-      &:hover {
-        background-color: grey;
-      }
-    `;
+function GlobalModal({ title, children, icon }) {
+    
+    // 알람 모달, 목표 모달 각각 상태값 가져오기
+    const alarmOpen = useRecoilValue(alarmModalState); 
+    const goalOpen = useRecoilValue(goalModalState); 
 
   return (
         <Modal display={(alarmOpen || goalOpen)?"flex":"none"}>
@@ -90,14 +60,14 @@ function GlobalModal({ title, children, icon }) {
                 <HeaderTitle>{title}</HeaderTitle>
                 </Header>
                 <ModalContents>{children}</ModalContents>
-                <ModalButtonContainer>
+                {/* <ModalButtonContainer>
                     <ModalButton marginRight="10px" backgroundColor="#fff">
                         등록
                     </ModalButton>
                     <ModalButton marginRight="10px" backgroundColor="#d9d9d9" onClick={handleCanceled}>
                         닫기
                     </ModalButton>
-                </ModalButtonContainer>
+                </ModalButtonContainer> */}
             </ModalContainer>
         </Modal>
   );
