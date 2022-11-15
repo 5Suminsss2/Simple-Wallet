@@ -224,12 +224,14 @@ function CreateAccountHistory({onSubmit}) {
                 placeholder="15,000"
                 marginTop="5px"
                 name="price"
-                value={ (price===0)? null:price}
+                value={price === 0 ? undefined : price}
                 onChange={onChange}
               />
             </form>
           </CreateAccountHistoryContainer>
-          <Button color="#fff" onClick={handleSubmit}>등록</Button>
+          <Button color="#fff" onClick={handleSubmit}>
+            등록
+          </Button>
           <Button onClick={handleCancel} color="#d9d9d9">
             닫기
           </Button>
