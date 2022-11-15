@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { AiFillBell } from "react-icons/ai";
 
-function GoalCard({ data }) {
+function AlarmCard({ data }) {
   // CSS
   const AlarmItems = styled.div`
     display: flex;
@@ -20,12 +20,38 @@ function GoalCard({ data }) {
     font-size: 13px;
   `;
 
+  // 디데이 계산기
+  const dDay = (data) => {
+    let today = new Date();
+    let dday = new Date(
+      Number(data.year),
+      Number(data.month)-1,
+      Number(data.date)
+    );
+    let gap = dday.getTime() - today.getTime();
+    let result = Math.ceil(gap / (1000 * 60* 60* 24));
+    return result;
+  }
+
   return (
     <AlarmItems>
       <AiFillBell size="15" color="#d9d9d9" />
-      <AlarmText>'{data.alarmContents}'까지 3일 남았습니다.</AlarmText>
+      {dDay(data) === 0 ? (
+        <AlarmText>
+          '{data.alarmContents}' 당일 입니다!
+        </AlarmText>
+        ) : dDay(data) > 0 ? (
+          <AlarmText>
+            '{data.alarmContents}'까지 {dDay(data)}일 남았습니다.
+          </AlarmText>
+        ): (
+          <AlarmText>
+            '{data.alarmContents}' 알림은 지난지 오래입니다.
+          </AlarmText>
+        )
+      }
     </AlarmItems>
   );
 }
 
-export default GoalCard;
+export default AlarmCard;
