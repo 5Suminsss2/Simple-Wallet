@@ -28,6 +28,7 @@ function Title() {
   const TitlePart = styled.div`
     margin-left: 130px;
     font-size: 20px;
+    font-family: "Abril Fatface", cursive;
   `;
 
   const IconPart = styled.div`

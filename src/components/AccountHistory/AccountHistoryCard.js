@@ -9,13 +9,17 @@ function AccountHistoryCard({data}) {
     const AccountHistoryDetail = styled.div`
         height: 55px;
         margin-bottom: 10px;
-        padding: 0 10px;
+        padding: 5px 10px 0 10px;
         font-size: 14px;
         background-color: #fff;
         border-radius: 10px;
         box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     `;
+
+    const AccountHistoryTitle = styled.div`
+        font-size: 15px;
+    `
 
     const AccountHistoryDate = styled.div`
         padding: 5px 0;
@@ -28,18 +32,26 @@ function AccountHistoryCard({data}) {
         align-items: center;
     `;
 
+    const Price = styled.div`
+      font-size: 15px;
+      font-weight: 900;
+      color: ${(props) => props.color || "black"};
+    `;
+
     return (
-        <AccountHistoryDetail>
-        <AccountHistoryDate>{data.year}-{data.month}-{data.date}</AccountHistoryDate>
+      <AccountHistoryDetail>
+        <AccountHistoryDate>
+          {data.year}-{data.month}-{data.date}
+        </AccountHistoryDate>
         <AccountHistoryContents>
-            <div>{data.accountContents}</div>
-            {data.accountType === "Deposit" ? (
-            <div>+ {price} 원</div>
-            ) : (
-            <div>- {price} 원</div>
-            )}
+          <AccountHistoryTitle>{data.accountContents}</AccountHistoryTitle>
+          {data.accountType === "Deposit" ? (
+            <Price color="blue">+ {price} 원</Price>
+          ) : (
+            <Price color="red">- {price} 원</Price>
+          )}
         </AccountHistoryContents>
-        </AccountHistoryDetail>
+      </AccountHistoryDetail>
     );
 }
 

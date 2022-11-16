@@ -28,14 +28,13 @@ function GoalCard({ data }) {
 
   return (
     <AlarmItems>
-      <AiFillStar size="15" color="#d9d9d9" />
+      <AiFillStar size="15" color="#98a8f0" />
       {remainingPrice >= 0 || remainingPrice === 0 ? (
-        <AlarmText>
-          '{data.goalContents}' 목표 달성!
-        </AlarmText>
+        <AlarmText>'{data.goalContents}' 목표 달성!</AlarmText>
       ) : (
         <AlarmText>
-          '{data.goalContents}' 목표까지 {" "} { Math.abs(remainingPrice).toLocaleString("ko-KR")}원 남았어요!
+          '{data.goalContents}' 목표까지{" "}
+          {Math.abs(remainingPrice).toLocaleString("ko-KR")}원 남았어요!
         </AlarmText>
       )}
     </AlarmItems>

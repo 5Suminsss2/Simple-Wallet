@@ -2,29 +2,35 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { totalState } from "../store/atom";
 
-function Total({dataset}) {
+function Total({ dataset }) {
 
   // CSS
   const TotalContainer = styled.section`
     margin: 15px 0 0 0;
   `;
+
   const TotalItem = styled.div`
     width: 310px;
     height: 130px;
     margin-top: 20px;
     padding: 5px 30px;
     border-radius: 10px;
-    background-color: #d9d9d9;
+    color: #fff;
+    background: linear-gradient(45deg, #98a8f0, #b09bf0);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   `;
 
   const TotalTitle = styled.div`
-    margin-top: 10px;
+    margin-top: 25px;
     font-size: 20px;
+    font-weight: 700;
   `;
 
   const TotalAccount = styled.div`
     margin-top: 15px;
     font-size: 32px;
+    font-weight: 700;
   `;
 
   const SeperateTotalContainer = styled.div`
@@ -38,17 +44,22 @@ function Total({dataset}) {
     height: 60px;
     padding: 12px;
     border-radius: 10px;
-    background-color: #d9d9d9;
+    color: #fff;
+    background: linear-gradient(45deg, #98a8f0, #b09bf0);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   `;
 
   const SeperateTotalTitle = styled.div`
     font-size: 14px;
-    margin-bottom: 6px;
+    margin: 3px 3px 7px 3px;
   `;
 
   const SeperateTotalAccount = styled.div`
+    display: flex;
+    justify-content: center;
     font-size: 18px;
-    margin-left: 22px;
+    font-weight: 700;
   `;
 
   const [total, setTotal] = useRecoilState(totalState);

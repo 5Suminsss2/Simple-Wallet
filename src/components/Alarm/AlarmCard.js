@@ -35,21 +35,16 @@ function AlarmCard({ data }) {
 
   return (
     <AlarmItems>
-      <AiFillBell size="15" color="#d9d9d9" />
+      <AiFillBell size="15" color="#98a8f0" />
       {dDay(data) === 0 ? (
+        <AlarmText>'{data.alarmContents}' 당일 입니다!</AlarmText>
+      ) : dDay(data) > 0 ? (
         <AlarmText>
-          '{data.alarmContents}' 당일 입니다!
+          '{data.alarmContents}'까지 {dDay(data)}일 남았습니다.
         </AlarmText>
-        ) : dDay(data) > 0 ? (
-          <AlarmText>
-            '{data.alarmContents}'까지 {dDay(data)}일 남았습니다.
-          </AlarmText>
-        ): (
-          <AlarmText>
-            '{data.alarmContents}' 알림은 지난지 오래입니다.
-          </AlarmText>
-        )
-      }
+      ) : (
+        <AlarmText>'{data.alarmContents}' 알림은 지난지 오래입니다.</AlarmText>
+      )}
     </AlarmItems>
   );
 }

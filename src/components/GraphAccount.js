@@ -15,6 +15,11 @@ const ChartContainer = styled.div`
     rgb(60 64 67 / 15%) 0px 2px 6px 2px;
 `;
 
+const ChartTitle = styled.div`
+  color: #2b2b2b;
+  font-weight: 700;
+`;
+
 function GraphAccount({ dataset }) {
   const today = new Date(); // 오늘 날짜
 
@@ -53,7 +58,7 @@ function GraphAccount({ dataset }) {
 
   return (
     <ChartContainer>
-      <div>{today.getFullYear()}년 월별 그래프</div>
+      <ChartTitle>{today.getFullYear()}년 월별 그래프</ChartTitle>
       <ResponsiveBar
         data={monthData}
         keys={["totalWithdraw", "totalDeposit"]}
@@ -63,7 +68,7 @@ function GraphAccount({ dataset }) {
         groupMode="grouped"
         valueScale={{ type: "linear" }}
         indexScale={{ type: "band", round: true }}
-        colors={{ scheme: "nivo" }}
+        colors={["#98a8f0", "#b09bf0"]}
         defs={[
           {
             id: "dots",

@@ -15,10 +15,12 @@ function AccountHistory({dataset}) {
     padding: 15px;
     margin: 30px 0;
     border-radius: 10px;
-    background-color: #d9d9d9;
+    background: linear-gradient(45deg, #98a8f0, #b09bf0);
   `;
 
   const AccountHistoryTitle = styled.div`
+    color: #fff;
+    font-weight: 600;
     margin-bottom: 10px;
   `
 
