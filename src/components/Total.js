@@ -6,7 +6,7 @@ function Total() {
 
   // CSS
   const TotalContainer = styled.section`
-    margin: 15px 0;
+    margin: 15px 0 0 0;
   `;
   const TotalItem = styled.div`
     width: 310px;
