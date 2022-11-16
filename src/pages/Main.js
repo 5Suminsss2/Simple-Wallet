@@ -8,7 +8,7 @@ import Total from "../components/Total";
 import GoalModal from "../components/Modal/GoalModal";
 import AlarmModal from "../components/Modal/AlarmModal";
 import { useRecoilValue } from "recoil";
-import { alarmModalState, goalModalState } from "../store/atom";
+import { alarmModalState, datasetState, goalModalState } from "../store/atom";
 
 function Main() {
 
@@ -31,13 +31,15 @@ function Main() {
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   `;
+  
+  const dataset = useRecoilValue(datasetState);
 
   return (
     <Wrapper>
       <Title />
       <Alarm />
       <Total />
-      <GraphAccount />
+      <GraphAccount dataset={dataset} />
       <AccountHistory />
       <CreateAccountHistory />
       {currentAlarmState ? <AlarmModal /> : null}
