@@ -1,12 +1,7 @@
-import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { datasetState } from "../../store/atom";
 import AccountHistoryCard from "./AccountHistoryCard";
 
-function AccountHistory() {
-
-  // 입출금 내역 데이터 가져오기
-  const dataset = useRecoilValue(datasetState);
+function AccountHistory({dataset}) {
 
   const accountHistoryCard = (data) =>{
     return(

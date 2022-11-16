@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { useRecoilValue, useRecoilState } from "recoil";
-import { datasetState, totalState } from "../store/atom";
+import { useRecoilState } from "recoil";
+import { totalState } from "../store/atom";
 
-function Total() {
+function Total({dataset}) {
 
   // CSS
   const TotalContainer = styled.section`
@@ -51,8 +51,6 @@ function Total() {
     margin-left: 22px;
   `;
 
-  // 입출금 내역 데이터 가져오기
-  const dataset = useRecoilValue(datasetState);
   const [total, setTotal] = useRecoilState(totalState);
   let deposit = 0;
   let withDraw = 0;

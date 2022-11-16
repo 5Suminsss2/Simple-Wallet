@@ -38,9 +38,9 @@ function Main() {
     <Wrapper>
       <Title />
       <Alarm />
-      <Total />
+      <Total dataset={dataset} />
       <GraphAccount dataset={dataset} />
-      <AccountHistory />
+      <AccountHistory dataset={dataset} />
       <CreateAccountHistory />
       {currentAlarmState ? <AlarmModal /> : null}
       {currentGoalState ? <GoalModal /> : null}
