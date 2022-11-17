@@ -6,6 +6,8 @@ import GlobalModal from "./GlobalModal";
 
 // CSS
   const Label = styled.label`
+    color: #fff;
+    font-weight: 700;
     font-size: 14px;
   `;
 
@@ -43,7 +45,7 @@ import GlobalModal from "./GlobalModal";
     background-color: ${(props) => props.color || "#fff"};
     cursor: pointer;
     &:hover {
-      background-color: grey;
+      background-color: #d9d9d9;
     }
   `;
   const Input = styled.input`
@@ -175,7 +177,7 @@ function AlarmModal() {
         <Label>내용</Label>
         {deposit === true ? (
           <ContentButtonBox>
-            <ContentButton onClick={handleDeposit} color="grey" disabled>
+            <ContentButton onClick={handleDeposit} color="#D9D9D9" disabled>
               입금
             </ContentButton>
             <ContentButton onClick={handleDeposit}>출금</ContentButton>
@@ -183,7 +185,7 @@ function AlarmModal() {
         ) : (
           <ContentButtonBox>
             <ContentButton onClick={handleDeposit}>입금</ContentButton>
-            <ContentButton onClick={handleDeposit} color="grey" disabled>
+            <ContentButton onClick={handleDeposit} color="#D9D9D9" disabled>
               출금
             </ContentButton>
           </ContentButtonBox>

@@ -43,10 +43,12 @@ function Title() {
     width: 25px;
     height: 25px;
     border-radius: 50%;
-    border: 2px solid #d9d9d9;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
     &:hover {
-      background: #dee2e8;
+      border: 1px solid #d9d9d9;
+      box-shadow: none;
     }
   `;
 
@@ -55,10 +57,10 @@ function Title() {
       <TitlePart>Simple Wallet</TitlePart>
       <IconPart>
         <IconItem onClick={openGoalModal}>
-          <AiFillStar size="15" color="#d9d9d9" />
+          <AiFillStar size="15" color="#98A8F0" />
         </IconItem>
         <IconItem onClick={openAlarmModal}>
-          <AiFillBell size="15" color="#d9d9d9" />
+          <AiFillBell size="15" color="#98A8F0" />
         </IconItem>
       </IconPart>
     </TitleContainer>

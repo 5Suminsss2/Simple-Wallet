@@ -35,7 +35,7 @@ function AccountHistoryCard({data}) {
     const Price = styled.div`
       font-size: 15px;
       font-weight: 900;
-      color: ${(props) => props.color || "black"};
+      color: #808080;
     `;
 
     return (
@@ -46,9 +46,9 @@ function AccountHistoryCard({data}) {
         <AccountHistoryContents>
           <AccountHistoryTitle>{data.accountContents}</AccountHistoryTitle>
           {data.accountType === "Deposit" ? (
-            <Price color="blue">+ {price} 원</Price>
+            <Price>+ {price} 원</Price>
           ) : (
-            <Price color="red">- {price} 원</Price>
+            <Price>- {price} 원</Price>
           )}
         </AccountHistoryContents>
       </AccountHistoryDetail>

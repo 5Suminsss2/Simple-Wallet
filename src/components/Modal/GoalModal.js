@@ -6,6 +6,8 @@ import { goalModalState, goalDatasetState } from "../../store/atom";
 
 // CSS
   const Label = styled.label`
+    color: #fff;
+    font-weight: 700;
     font-size: 14px;
   `;
 
@@ -168,6 +170,7 @@ function GoalModal() {
         <Label>목표 내용</Label>
         <Input
           placeholder="페퍼로니 피자 1판"
+          marginTop="5px"
           marginBottom="10px"
           name="goalContents"
           value={goalContents}

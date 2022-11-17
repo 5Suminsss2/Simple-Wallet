@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import { AiFillBell } from "react-icons/ai";
 
-function AlarmCard({ data }) {
-  // CSS
+// CSS
   const AlarmItems = styled.div`
     display: flex;
     align-items: center;
@@ -20,6 +19,8 @@ function AlarmCard({ data }) {
     font-size: 13px;
   `;
 
+function AlarmCard({ data }) {
+  
   // 디데이 계산기
   const dDay = (data) => {
     let today = new Date();

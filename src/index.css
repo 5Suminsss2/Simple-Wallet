@@ -54,6 +54,7 @@
 
 body {
     font-family: 'Nanum Gothic', sans-serif;
+    background: linear-gradient(80deg, #98a8f0, #b09bf0);
 }
 
 /* :root {

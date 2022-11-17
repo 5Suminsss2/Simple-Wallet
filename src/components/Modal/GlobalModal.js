@@ -32,15 +32,16 @@ import { useRecoilValue } from "recoil";
     `
 
     const HeaderTitle = styled.div`
+        font-weight: 700;
         margin-left: 5px;
     `
 
     const ModalContents = styled.div`
-        margin-top: 20px;
-        padding: 10px;
-        border-radius: 10px;
-        background-color: #d9d9d9;
-    `
+      margin-top: 20px;
+      padding: 10px;
+      border-radius: 10px;
+      background: linear-gradient(45deg, #98a8f0, #b09bf0);
+    `;
 
 function GlobalModal({ title, children, icon }) {
     
@@ -49,19 +50,19 @@ function GlobalModal({ title, children, icon }) {
     const goalOpen = useRecoilValue(goalModalState); 
 
   return (
-        <Modal display={(alarmOpen || goalOpen)?"flex":"none"}>
-            <ModalContainer>
-                <Header>
-                {icon === "alarm" ? (
-                    <AiFillBell size="15" color="#d9d9d9" />
-                ) : (
-                    <AiFillStar size="15" color="#d9d9d9" />
-                )}
-                <HeaderTitle>{title}</HeaderTitle>
-                </Header>
-                <ModalContents>{children}</ModalContents>
-            </ModalContainer>
-        </Modal>
+    <Modal display={alarmOpen || goalOpen ? "flex" : "none"}>
+      <ModalContainer>
+        <Header>
+          {icon === "alarm" ? (
+            <AiFillBell size="15" color="#AFBBF3" />
+          ) : (
+            <AiFillStar size="15" color="#AFBBF3" />
+          )}
+          <HeaderTitle>{title}</HeaderTitle>
+        </Header>
+        <ModalContents>{children}</ModalContents>
+      </ModalContainer>
+    </Modal>
   );
 }
 

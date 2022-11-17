@@ -9,11 +9,13 @@ const CreateAccountHistoryContainer = styled.div`
   padding: 15px;
   margin-bottom: 30px;
   border-radius: 10px;
-  background-color: #d9d9d9;
+  background: linear-gradient(45deg, #98a8f0, #b09bf0);
 `;
 
 const CreateAccountHistoryTitle = styled.div`
   font-size: 16px;
+  font-weight: 700;
+  color: #fff;
   margin-bottom: 10px;
 `;
 
@@ -27,15 +29,20 @@ const Button = styled.div`
   border-radius: 10px;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  background-color: ${(props) => props.color};
+  color: ${(props) => props.color || "#000"};
+  background-color: ${(props) => props.backgroundColor};
   cursor: pointer;
   &:hover {
-    background-color: grey;
+    background-color: #d3d3d3;
+    color: #979694;
   }
+  font-weight: 700;
 `;    
 
 // form css
 const Label = styled.label`
+  color: #fff;
+  font-weight: 700;
   font-size: 14px;
 `;
 
@@ -83,9 +90,10 @@ const ContentButton = styled.button`
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   background-color: ${(props) => props.color || "#fff"};
+  font-weight: 700;
   cursor: pointer;
   &:hover {
-    background-color: grey;
+    background-color: #d3d3d3;
   }
 `;
 
@@ -197,7 +205,11 @@ function CreateAccountHistory({onSubmit}) {
               <Label>내용</Label>
               {deposit === true ? (
                 <ContentButtonBox>
-                  <ContentButton onClick={handleDeposit} color="grey" disabled>
+                  <ContentButton
+                    onClick={handleDeposit}
+                    color="#d3d3d3"
+                    disabled
+                  >
                     입금
                   </ContentButton>
                   <ContentButton onClick={handleDeposit}>출금</ContentButton>
@@ -205,7 +217,11 @@ function CreateAccountHistory({onSubmit}) {
               ) : (
                 <ContentButtonBox>
                   <ContentButton onClick={handleDeposit}>입금</ContentButton>
-                  <ContentButton onClick={handleDeposit} color="grey" disabled>
+                  <ContentButton
+                    onClick={handleDeposit}
+                    color="#d3d3d3"
+                    disabled
+                  >
                     출금
                   </ContentButton>
                 </ContentButtonBox>
@@ -229,10 +245,14 @@ function CreateAccountHistory({onSubmit}) {
               />
             </form>
           </CreateAccountHistoryContainer>
-          <Button color="#fff" onClick={handleSubmit}>
+          <Button backgroundColor="#fff" onClick={handleSubmit}>
             등록
           </Button>
-          <Button onClick={handleCancel} color="#d9d9d9">
+          <Button
+            color="#979694"
+            backgroundColor="#d9d9d9"
+            onClick={handleCancel}
+          >
             닫기
           </Button>
         </div>
