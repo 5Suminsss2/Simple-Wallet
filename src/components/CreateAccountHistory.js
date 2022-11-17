@@ -10,6 +10,11 @@ const CreateAccountHistoryContainer = styled.div`
   margin-bottom: 30px;
   border-radius: 10px;
   background: linear-gradient(45deg, #98a8f0, #b09bf0);
+
+  @media screen and (min-width: 1200px) {
+    margin-left: 30px;
+    margin-bottom: 10px;
+  }
 `;
 
 const CreateAccountHistoryTitle = styled.div`
@@ -17,6 +22,13 @@ const CreateAccountHistoryTitle = styled.div`
   font-weight: 700;
   color: #fff;
   margin-bottom: 10px;
+`;
+
+// 등록 취소 버튼 
+const ButtonCotainer = styled.div`
+  @media screen and (min-width: 1200px) {
+    display: flex;
+  }
 `;
 
 const Button = styled.div`
@@ -37,6 +49,10 @@ const Button = styled.div`
     color: #979694;
   }
   font-weight: 700;
+
+  @media screen and (min-width: 1200px) {
+      display: none;
+  }
 `;    
 
 // form css
@@ -174,6 +190,15 @@ function CreateAccountHistory({onSubmit}) {
     }
   },[deposit])
 
+  useEffect(()=>{
+    // 화면 사이즈에 따라 입출금 폼 보여주기 여부 판별
+    if(window.screen.width > 1200){
+      setOpen(true);
+     } else {
+      setOpen(false);
+     }
+  },[])
+
   return (
     <div>
       {open === true ? (
@@ -245,16 +270,19 @@ function CreateAccountHistory({onSubmit}) {
               />
             </form>
           </CreateAccountHistoryContainer>
-          <Button backgroundColor="#fff" onClick={handleSubmit}>
-            등록
-          </Button>
-          <Button
-            color="#979694"
-            backgroundColor="#d9d9d9"
-            onClick={handleCancel}
-          >
-            닫기
-          </Button>
+          
+          <ButtonCotainer>
+            <Button backgroundColor="#fff" onClick={handleSubmit}>
+              등록
+            </Button>
+            <Button
+              color="#979694"
+              backgroundColor="#d9d9d9"
+              onClick={handleCancel}
+            >
+              닫기
+            </Button>
+          </ButtonCotainer>
         </div>
       ) : (
         <Button onClick={handleAddHistory}>새 거래내역 추가</Button>

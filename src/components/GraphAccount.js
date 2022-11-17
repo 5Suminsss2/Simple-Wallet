@@ -13,6 +13,13 @@ const ChartContainer = styled.div`
   border-radius: 10px;
   box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px,
     rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+
+  @media screen and (min-width: 1200px) {
+    margin-top: 35px;
+    margin-left: 30px;
+    height: 222px;
+    width: 30vw;
+  }
 `;
 
 const ChartTitle = styled.div`

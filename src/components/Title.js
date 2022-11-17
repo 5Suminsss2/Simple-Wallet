@@ -29,6 +29,11 @@ function Title() {
     margin-left: 130px;
     font-size: 20px;
     font-family: "Abril Fatface", cursive;
+    @media screen and (min-width: 1200px) {
+      margin-left: 0px;
+      font-size: 20px;
+      font-family: "Abril Fatface", cursive;
+    }
   `;
 
   const IconPart = styled.div`

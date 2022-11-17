@@ -30,6 +30,25 @@ function Main() {
     border-radius: 10px;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
       rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
+    @media screen and (min-width: 1200px) {
+      width: 80vw;
+      height: 90vh;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+  `;
+
+  const ToatalAndGraph = styled.section`
+    @media screen and (min-width: 1200px) {
+      display: flex;
+    }
+  `;
+
+  const AccountHistoryContainer = styled.section`
+    @media screen and (min-width: 1200px) {
+      display: flex;
+    }
   `;
   
   const dataset = useRecoilValue(datasetState);
@@ -38,10 +57,14 @@ function Main() {
     <Wrapper>
       <Title />
       <Alarm />
-      <Total dataset={dataset} />
-      <GraphAccount dataset={dataset} />
-      <AccountHistory dataset={dataset} />
-      <CreateAccountHistory />
+      <ToatalAndGraph>
+        <Total dataset={dataset} />
+        <GraphAccount dataset={dataset} />
+      </ToatalAndGraph>
+      <AccountHistoryContainer>
+        <AccountHistory dataset={dataset} />
+        <CreateAccountHistory />
+      </AccountHistoryContainer>
       {currentAlarmState ? <AlarmModal /> : null}
       {currentGoalState ? <GoalModal /> : null}
     </Wrapper>

@@ -19,12 +19,17 @@ function Total({ dataset }) {
     background: linear-gradient(45deg, #98a8f0, #b09bf0);
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    @media screen and (min-width: 1200px) {
+      width: 17vw;
+    }
   `;
 
   const TotalTitle = styled.div`
     margin-top: 25px;
     font-size: 20px;
     font-weight: 700;
+    
   `;
 
   const TotalAccount = styled.div`
@@ -48,6 +53,12 @@ function Total({ dataset }) {
     background: linear-gradient(45deg, #98a8f0, #b09bf0);
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+    @media screen and (min-width: 1200px) {
+      &:first-child {
+        margin-right: 15px;
+      }
+    }
   `;
 
   const SeperateTotalTitle = styled.div`

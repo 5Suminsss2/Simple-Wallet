@@ -8,6 +8,9 @@ function Alarm() {
   // CSS
   const AlarmContainer = styled.section`
     margin-top: 10px;
+    @media screen and (min-width: 1200px) {
+      margin-left: 0px;
+    }
   `;
 
   // 목표 데이터 가져오기

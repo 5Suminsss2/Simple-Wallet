@@ -16,6 +16,14 @@ function AccountHistory({dataset}) {
     margin: 30px 0;
     border-radius: 10px;
     background: linear-gradient(45deg, #98a8f0, #b09bf0);
+
+    @media screen and (min-width: 1200px) {
+      width: 50vw;
+      height: 300px;
+      border-radius: 10px;
+      box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+        rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
   `;
 
   const AccountHistoryTitle = styled.div`
