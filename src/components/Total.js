@@ -59,7 +59,7 @@ function Total({ dataset }) {
     display: flex;
     justify-content: center;
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 900;
   `;
 
   const [total, setTotal] = useRecoilState(totalState);
