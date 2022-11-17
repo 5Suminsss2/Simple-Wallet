@@ -1,9 +1,21 @@
 import styled from "styled-components";
-import { AiFillBell } from "react-icons/ai";
+import { AiFillBell, AiOutlineClose } from "react-icons/ai";
+import { useRecoilState } from "recoil";
+import { alarmDatasetState } from "../../store/atom";
 
 // CSS
+  const AlarmItemsclose = styled.div`
+    display: flex;
+    position: relative;
+    right: -20px;
+    width: 10px;
+    transition: 0.3s;
+    cursor: pointer;
+  `;
+
   const AlarmItems = styled.div`
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 30px;
     width: 350px;
@@ -12,6 +24,11 @@ import { AiFillBell } from "react-icons/ai";
     border-radius: 10px;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
       rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    overflow: hidden;
+    &:hover ${AlarmItemsclose} {
+      transition: 0.3s;
+      right: 10px;
+    }
   `;
 
   const AlarmText = styled.div`
@@ -19,7 +36,19 @@ import { AiFillBell } from "react-icons/ai";
     font-size: 13px;
   `;
 
+  const AlarmItemsContents = styled.div`
+    display: flex;
+  `;
+
 function AlarmCard({ data }) {
+  
+  const [dataset, setDataset] = useRecoilState(alarmDatasetState); // 기존 알람 내역
+
+  // 목표 알림 제거하기
+  const handleRemove = () => {
+    let filtered = dataset.filter((element) => element !== data);
+    setDataset(filtered);
+  };
   
   // 디데이 계산기
   const dDay = (data) => {
@@ -36,16 +65,23 @@ function AlarmCard({ data }) {
 
   return (
     <AlarmItems>
-      <AiFillBell size="15" color="#98a8f0" />
-      {dDay(data) === 0 ? (
-        <AlarmText>'{data.alarmContents}' 당일 입니다!</AlarmText>
-      ) : dDay(data) > 0 ? (
-        <AlarmText>
-          '{data.alarmContents}'까지 {dDay(data)}일 남았습니다.
-        </AlarmText>
-      ) : (
-        <AlarmText>'{data.alarmContents}' 알림은 지난지 오래입니다.</AlarmText>
-      )}
+      <AlarmItemsContents>
+        <AiFillBell size="15" color="#98a8f0" />
+        {dDay(data) === 0 ? (
+          <AlarmText>'{data.alarmContents}' 당일 입니다!</AlarmText>
+        ) : dDay(data) > 0 ? (
+          <AlarmText>
+            '{data.alarmContents}'까지 {dDay(data)}일 남았습니다.
+          </AlarmText>
+        ) : (
+          <AlarmText>
+            '{data.alarmContents}' 알림은 지난지 오래입니다.
+          </AlarmText>
+        )}
+      </AlarmItemsContents>
+      <AlarmItemsclose onClick={handleRemove}>
+        <AiOutlineClose />
+      </AlarmItemsclose>
     </AlarmItems>
   );
 }
