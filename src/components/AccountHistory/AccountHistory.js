@@ -12,10 +12,15 @@ function AccountHistory({dataset}) {
   // CSS
   const AccountHistoryContainer = styled.section`
     width: 340px;
+    height: 300px;
     padding: 15px;
     margin: 30px 0;
     border-radius: 10px;
     background: linear-gradient(45deg, #98a8f0, #b09bf0);
+    overflow: scroll;
+    overflow-x: hidden;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 
     @media screen and (min-width: 1200px) {
       width: 50vw;
@@ -23,6 +28,15 @@ function AccountHistory({dataset}) {
       border-radius: 10px;
       box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: inset 0px 0px 1px white;
     }
   `;
 

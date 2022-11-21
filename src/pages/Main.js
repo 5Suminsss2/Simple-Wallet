@@ -42,6 +42,7 @@ function Main() {
   const ToatalAndGraph = styled.section`
     @media screen and (min-width: 1200px) {
       display: flex;
+      width: 50vw;
     }
   `;
 
