@@ -12,7 +12,7 @@ function AccountHistory({dataset}) {
   // CSS
   const AccountHistoryContainer = styled.section`
     width: 340px;
-    height: 300px;
+    height: ${(props) => props.height || null};
     padding: 15px;
     margin: 30px 0;
     border-radius: 10px;
@@ -46,11 +46,39 @@ function AccountHistory({dataset}) {
     margin-bottom: 10px;
   `
 
+  const AccountHistoryDetail = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  `;
+
   return (
-    <AccountHistoryContainer>
-      <AccountHistoryTitle>입출금 내역</AccountHistoryTitle>
-      <div>{dataset.map(accountHistoryCard)}</div>
-    </AccountHistoryContainer>
+    <>
+      {dataset.length === 0 ? (
+        <AccountHistoryContainer>
+          <AccountHistoryTitle>입출금 내역</AccountHistoryTitle>
+          <div>
+            <AccountHistoryDetail>
+              새 거래 내역에 입력해봐요!
+            </AccountHistoryDetail>
+          </div>
+        </AccountHistoryContainer>
+      ) : (
+        <AccountHistoryContainer height="300px">
+          <AccountHistoryTitle>입출금 내역</AccountHistoryTitle>
+          <div>
+            {dataset.map(accountHistoryCard)}
+          </div>
+        </AccountHistoryContainer>
+      )}
+    </>
   );
 }
 
