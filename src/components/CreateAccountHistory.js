@@ -12,10 +12,19 @@ const CreateAccountHistoryContainer = styled.div`
   background: linear-gradient(45deg, #98a8f0, #b09bf0);
 
   @media screen and (min-width: 1200px) {
+    width: 23vw;
+    height: 300px;
     margin-left: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 1px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   }
 `;
+
+const CreateAccountHistoryHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
 
 const CreateAccountHistoryTitle = styled.div`
   font-size: 16px;
@@ -28,6 +37,7 @@ const CreateAccountHistoryTitle = styled.div`
 const ButtonCotainer = styled.div`
   @media screen and (min-width: 1200px) {
     display: flex;
+    
   }
 `;
 
@@ -55,6 +65,28 @@ const Button = styled.div`
   }
 `;    
 
+// wide 창일 때, 등록 버튼
+const SubmitButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  cursor: pointer;
+  &:hover {
+    background-color: #d3d3d3;
+    color: #979694;
+  }
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+
 // form css
 const Label = styled.label`
   color: #fff;
@@ -65,7 +97,7 @@ const Label = styled.label`
 const DateInputBox = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 340px;
+  width: 100%;
   margin: 5px 0 10px 0;
 `;
 
@@ -78,7 +110,7 @@ const DateInput = styled.input`
 `;
 
 const Input = styled.input`
-  width: 330px;
+  width: 97%;
   height: 40px;
   border-radius: 10px;
   border: none;
@@ -204,7 +236,14 @@ function CreateAccountHistory({onSubmit}) {
       {open === true ? (
         <div>
           <CreateAccountHistoryContainer>
-            <CreateAccountHistoryTitle>새 거래 내역</CreateAccountHistoryTitle>
+            <CreateAccountHistoryHeader>
+              <CreateAccountHistoryTitle>
+                새 거래 내역
+              </CreateAccountHistoryTitle>
+              <SubmitButton backgroundColor="#fff" onClick={handleSubmit}>
+                등록
+              </SubmitButton>
+            </CreateAccountHistoryHeader>
             <form onSubmit={onSubmit}>
               <Label>날짜</Label>
               <DateInputBox>
@@ -270,7 +309,7 @@ function CreateAccountHistory({onSubmit}) {
               />
             </form>
           </CreateAccountHistoryContainer>
-          
+
           <ButtonCotainer>
             <Button backgroundColor="#fff" onClick={handleSubmit}>
               등록

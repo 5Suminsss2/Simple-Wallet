@@ -47,7 +47,10 @@ function Main() {
 
   const AccountHistoryContainer = styled.section`
     @media screen and (min-width: 1200px) {
+      width: 100%;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   `;
   
