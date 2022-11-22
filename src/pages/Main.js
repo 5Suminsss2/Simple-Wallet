@@ -9,6 +9,7 @@ import GoalModal from "../components/Modal/GoalModal";
 import AlarmModal from "../components/Modal/AlarmModal";
 import { useRecoilValue } from "recoil";
 import { alarmModalState, datasetState, goalModalState } from "../store/atom";
+import NewsContainer from "../components/News/NewsContainer";
 
 function Main() {
 
@@ -35,13 +36,15 @@ function Main() {
       height: 90vh;
       justify-content: flex-start;
       align-items: flex-start;
+      padding: 40px;
     }
   `;
 
   const ToatalAndGraph = styled.section`
     @media screen and (min-width: 1200px) {
       display: flex;
-      width: 50vw;
+      width: 100%;
+      justify-content: space-between;
     }
   `;
 
@@ -63,6 +66,7 @@ function Main() {
       <ToatalAndGraph>
         <Total dataset={dataset} />
         <GraphAccount dataset={dataset} />
+        <NewsContainer />
       </ToatalAndGraph>
       <AccountHistoryContainer>
         <AccountHistory dataset={dataset} />

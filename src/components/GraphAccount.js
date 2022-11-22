@@ -18,7 +18,7 @@ const ChartContainer = styled.div`
     margin-top: 35px;
     margin-left: 30px;
     height: 222px;
-    width: 30vw;
+    width: 25vw;
   }
 `;
 
