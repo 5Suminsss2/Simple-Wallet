@@ -9,7 +9,8 @@ function Alarm() {
   const AlarmContainer = styled.section`
     margin-top: 10px;
     @media screen and (min-width: 1200px) {
-      margin-left: 0px;
+      display: flex;
+      width: 100%;
     }
   `;
 

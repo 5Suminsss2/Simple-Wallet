@@ -30,6 +30,11 @@ import { goalDatasetState, totalState } from "../../store/atom";
       transition: 0.3s;
       right: 10px;
     }
+
+    @media screen and (min-width: 1200px) {
+      margin-right: 10px;
+      flex-wrap: wrap;
+    }
   `;
 
   const AlarmText = styled.div`
