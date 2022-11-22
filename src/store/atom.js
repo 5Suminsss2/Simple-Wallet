@@ -1,17 +1,21 @@
 // atom.js
 import { atom } from "recoil";
-import accountHistoryData from "../data/accountHistoryData.json";
-import goalData from "../data/goalData.json";
-import alarmData from "../data/alarmData.json";
+import { getAccountHistory, getAlarmData, getGoalData } from "../api/getData";
 
-// 알람 모달 
- let alarmModalState = atom({
+
+//데이터 내역 불러오기
+const accountHistoryData = getAccountHistory();
+const goalData = getGoalData();
+const alarmData = getAlarmData();
+
+// 알람 모달
+let alarmModalState = atom({
   key: "alarmModal",
   default: false,
 });
 
 // 목표 모달
- let goalModalState = atom({
+let goalModalState = atom({
   key: "goalModal",
   default: false,
 });
@@ -19,19 +23,19 @@ import alarmData from "../data/alarmData.json";
 //입출금 내역
 let datasetState = atom({
   key: "dataset",
-  default: accountHistoryData["accountHistoryData"],
+  default: accountHistoryData,
 });
 
 // 목표 데이터
 let goalDatasetState = atom({
   key: "goalDataset",
-  default: goalData["goalData"],
+  default: goalData,
 });
 
 // 알람 데이터
 let alarmDatasetState = atom({
   key: "alarmDataset",
-  default: alarmData["alarmData"],
+  default: alarmData,
 });
 
 // 총 금액 데이터

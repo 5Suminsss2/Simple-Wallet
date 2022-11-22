@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import GlobalModal from "./GlobalModal";
 import { goalModalState, goalDatasetState } from "../../store/atom";
+import axios from "axios";
 
 // CSS
   const Label = styled.label`
@@ -103,23 +104,26 @@ function GoalModal() {
   };
 
   // 새 거래내역 등록 버튼 눌렀을 때
-  const handleSubmit = () => {
-    setDataset([inputs, ...dataset]);
+  const handleSubmit = async () => {
+    await axios
+      .post("http://localhost:4000/goalData", inputs)
+      .then((res) => {
+        // 등록 즉시 화면에 반영될 수 있도록 설정
+        setDataset([inputs, ...dataset]);
 
-    // input 값 초기화
-    setInputs({
-      startYear: "",
-      startMonth: "",
-      startDate: "",
-      endYear: "",
-      endMonth: "",
-      endDate: "",
-      goalContents: "",
-      price: 0,
-    });
-
-    setGoalOpen(false);
-
+        // input 값 초기화
+        setInputs({
+          startYear: "",
+          startMonth: "",
+          startDate: "",
+          endYear: "",
+          endMonth: "",
+          endDate: "",
+          goalContents: "",
+          price: 0,
+        });
+        setGoalOpen(false);
+      });
   };
 
   return (

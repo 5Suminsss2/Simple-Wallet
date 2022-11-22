@@ -15,7 +15,6 @@ function Main() {
   // 알람 모달, 목표 모달 현재 상태값 가져오기
   const currentAlarmState = useRecoilValue(alarmModalState); // 읽기 전용
   const currentGoalState = useRecoilValue(goalModalState); // 읽기 전용
-  console.log(currentAlarmState, currentGoalState);
   
   // CSS
   const Wrapper = styled.section`
