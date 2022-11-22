@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const Container = styled(Link)`
+const Container = styled.a`
   display: flex;
   justify-content: center;
   height: 60px;
@@ -24,7 +23,7 @@ const NewsContents = styled.div`
 function NewsItems({ article }) {
   const { title, url, urlToImage } = article;
   return (
-    <Container to={url}>
+    <Container href={url}>
         <img src={urlToImage} />
       <NewsContents>
         <div>{title}</div>
