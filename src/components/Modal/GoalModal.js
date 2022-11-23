@@ -57,8 +57,7 @@ import axios from "axios";
     }
   `;
 
-function GoalModal() { 
-
+function GoalModal() {
   // 목표 모달 각각 상태값 가져오기
   const [goalOpen, setGoalOpen] = useRecoilState(goalModalState);
 
@@ -67,6 +66,18 @@ function GoalModal() {
     if (goalOpen === true) {
       setGoalOpen(false);
     }
+  };
+
+  // 무작위 id 생성
+  const uuidv4 = () => {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
   };
 
   // 기존 거래 내역
@@ -82,7 +93,7 @@ function GoalModal() {
     endDate: "",
     goalContents: "",
     price: 0,
-    id: dataset.length + 1,
+    id: uuidv4(),
   });
 
   const {
@@ -125,7 +136,7 @@ function GoalModal() {
         setGoalOpen(false);
       });
     } else {
-      alert("목표 알림 설정은 2개까지 가능합니다.")
+      alert("목표 알림 설정은 2개까지 가능합니다.");
     }
   };
 

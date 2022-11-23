@@ -161,6 +161,17 @@ function CreateAccountHistory({onSubmit}) {
   // 기존 거래 내역
   const [dataset, setDataset] = useRecoilState(datasetState);
 
+  function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
+  }
+
   // 새 거래 내역 
   const [inputs, setInputs] = useState({
     accountType: "deposit",
@@ -169,7 +180,7 @@ function CreateAccountHistory({onSubmit}) {
     date: "",
     accountContents: "",
     price: 0,
-    id: dataset.length + 1
+    id: uuidv4(),
   });
   
   const { year, month, date, accountContents, price  } = inputs;
@@ -198,8 +209,7 @@ function CreateAccountHistory({onSubmit}) {
       .post("http://localhost:4000/accountHistoryData", inputs)
       .then((res)=>{
         // 등록 즉시 화면에 반영될 수 있도록 설정
-        setDataset([inputs, ...dataset]);
-        
+       setDataset([inputs, ...dataset]);
         // input 값 초기화
         setInputs({
           accountType: "Deposit",

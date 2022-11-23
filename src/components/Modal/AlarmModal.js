@@ -86,6 +86,18 @@ function AlarmModal() {
   // 기존 거래 내역
   const [dataset, setDataset] = useRecoilState(alarmDatasetState);
 
+  // 무작위 id 생성
+  const uuidv4 = () => {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
+  };
+
   // 새 거래 내역
   const [inputs, setInputs] = useState({
     accountType: "deposit",
@@ -94,7 +106,7 @@ function AlarmModal() {
     date: "",
     alarmContents: "",
     price: 0,
-    id: dataset.length + 1
+    id: uuidv4(),
   });
 
   const { year, month, date, alarmContents, price } = inputs;
@@ -114,9 +126,8 @@ function AlarmModal() {
 
   // 새 거래내역 등록 버튼 눌렀을 때
   const handleSubmit = async () => {
-
     // 데이터 2개까지만 입력 제한
-    if(dataset.length < 2) {
+    if (dataset.length < 2) {
       await axios
         .post("http://localhost:4000/alarmData", inputs)
         .then((res) => {
@@ -138,7 +149,6 @@ function AlarmModal() {
     } else {
       alert("알람 설정은 2개까지 가능합니다.");
     }
-    
   };
 
   // 새 거래내역 닫기 버튼 눌렀을 때
