@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import GlobalModal from "./GlobalModal";
-import { goalModalState, goalDatasetState } from "../../store/atom";
+import { goalModalState, goalDatasetState, datasetState } from "../../store/atom";
 import axios from "axios";
 
 // CSS
@@ -105,9 +105,8 @@ function GoalModal() {
 
   // 새 거래내역 등록 버튼 눌렀을 때
   const handleSubmit = async () => {
-    await axios
-      .post("http://localhost:4000/goalData", inputs)
-      .then((res) => {
+    if (dataset.length < 2) {
+      await axios.post("http://localhost:4000/goalData", inputs).then((res) => {
         // 등록 즉시 화면에 반영될 수 있도록 설정
         setDataset([inputs, ...dataset]);
 
@@ -124,6 +123,9 @@ function GoalModal() {
         });
         setGoalOpen(false);
       });
+    } else {
+      alert("목표 알림 설정은 2개까지 가능합니다.")
+    }
   };
 
   return (

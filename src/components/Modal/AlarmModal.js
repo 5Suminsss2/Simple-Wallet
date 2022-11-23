@@ -113,24 +113,31 @@ function AlarmModal() {
 
   // 새 거래내역 등록 버튼 눌렀을 때
   const handleSubmit = async () => {
-    await axios
-      .post("http://localhost:4000/alarmData", inputs)
-      .then((res) => {
-        // 등록 즉시 화면에 반영될 수 있도록 설정
-        setDataset([inputs, ...dataset]);
 
-        // input 값 초기화
-        setInputs({
-          accountType: "Deposit",
-          year: "",
-          month: "",
-          date: "",
-          accountContents: "",
-          price: 0,
+    // 데이터 2개까지만 입력 제한
+    if(dataset.length < 2) {
+      await axios
+        .post("http://localhost:4000/alarmData", inputs)
+        .then((res) => {
+          // 등록 즉시 화면에 반영될 수 있도록 설정
+          setDataset([inputs, ...dataset]);
+
+          // input 값 초기화
+          setInputs({
+            accountType: "Deposit",
+            year: "",
+            month: "",
+            date: "",
+            accountContents: "",
+            price: 0,
+          });
+          setDeposit(true);
+          setAlarmOpen(false);
         });
-        setDeposit(true);
-        setAlarmOpen(false);
-      });
+    } else {
+      alert("알람 설정은 2개까지 가능합니다.");
+    }
+    
   };
 
   // 새 거래내역 닫기 버튼 눌렀을 때
