@@ -138,18 +138,27 @@ function GoalModal() {
             name="startYear"
             value={startYear}
             onChange={onChange}
+            type="number"
+            min="2015"
+            max="2100"
           />
           <DateInput
-            placeholder="01"
+            placeholder="1"
             name="startMonth"
             value={startMonth}
             onChange={onChange}
+            type="number"
+            min="1"
+            max="12"
           />
           <DateInput
-            placeholder="01"
+            placeholder="1"
             name="startDate"
             value={startDate}
             onChange={onChange}
+            type="number"
+            min="1"
+            max="31"
           />
         </DateInputBox>
         <Label>목표 날짜</Label>
@@ -159,18 +168,27 @@ function GoalModal() {
             name="endYear"
             value={endYear}
             onChange={onChange}
+            type="number"
+            min="2015"
+            max="2100"
           />
           <DateInput
-            placeholder="02"
+            placeholder="2"
             name="endMonth"
             value={endMonth}
             onChange={onChange}
+            type="number"
+            min="1"
+            max="12"
           />
           <DateInput
-            placeholder="01"
+            placeholder="1"
             name="endDate"
             value={endDate}
             onChange={onChange}
+            type="number"
+            min="1"
+            max="31"
           />
         </DateInputBox>
         <Label>목표 내용</Label>

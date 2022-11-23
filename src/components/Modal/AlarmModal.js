@@ -172,18 +172,27 @@ function AlarmModal() {
             name="year"
             value={year}
             onChange={onChange}
+            type="number"
+            min="2015"
+            max="2100"
           />
           <DateInput
-            placeholder="01"
+            placeholder="1"
             name="month"
             value={month}
             onChange={onChange}
+            type="number"
+            min="1"
+            max="12"
           />
           <DateInput
-            placeholder="01"
+            placeholder="1"
             name="date"
             value={date}
             onChange={onChange}
+            type="number"
+            min="1"
+            max="31"
           />
         </DateInputBox>
         <Label>내용</Label>
