@@ -66,11 +66,15 @@ function AccountHistoryCard({ data }) {
     setDataset(filtered);
   };
 
+  // 10 이하인 경우 숫자 앞에 0 붙이기
+  const date = data.date < 10 ? "0" + data.date : data.date
+  const month = data.month < 10 ? "0" + data.month : data.month;
+
   return (
     <AccountHistoryDetail>
       <AccountHistoryPart>
         <AccountHistoryDate>
-          {data.year}-{data.month}-{data.date}
+          {data.year}-{month}-{date}
         </AccountHistoryDate>
         <AccountHistoryContents>
           <AccountHistoryTitle>{data.accountContents}</AccountHistoryTitle>

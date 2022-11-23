@@ -261,13 +261,13 @@ function CreateAccountHistory({onSubmit}) {
                   onChange={onChange}
                 />
                 <DateInput
-                  placeholder="01"
+                  placeholder="1"
                   name="month"
                   value={month}
                   onChange={onChange}
                 />
                 <DateInput
-                  placeholder="01"
+                  placeholder="1"
                   name="date"
                   value={date}
                   onChange={onChange}
