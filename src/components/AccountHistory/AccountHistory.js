@@ -30,6 +30,10 @@ function AccountHistory({dataset}) {
         rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     }
 
+    @media screen and (min-width: 1600px) {
+      width: 800px;
+    }
+
     &::-webkit-scrollbar {
       width: 8px;
     }

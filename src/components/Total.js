@@ -7,6 +7,7 @@ function Total({ dataset }) {
   // CSS
   const TotalContainer = styled.section`
     margin: 15px 0 0 0;
+    
   `;
 
   const TotalItem = styled.div`
@@ -22,6 +23,10 @@ function Total({ dataset }) {
 
     @media screen and (min-width: 1200px) {
       width: 17vw;
+    }
+
+    @media screen and (min-width: 1600px) {
+      width: 250px;
     }
   `;
 

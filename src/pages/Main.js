@@ -33,7 +33,15 @@ function Main() {
 
     @media screen and (min-width: 1200px) {
       width: 80vw;
-      height: 90vh;
+      height: 83vh;
+      justify-content: flex-start;
+      align-items: flex-start;
+      padding: 40px;
+    }
+
+    @media screen and (min-width: 1600px) {
+      width: 1200px;
+      height: 83vh;
       justify-content: flex-start;
       align-items: flex-start;
       padding: 40px;

@@ -20,6 +20,10 @@ const ChartContainer = styled.div`
     height: 222px;
     width: 25vw;
   }
+
+  @media screen and (min-width: 1600px) {
+    width: 400px;
+  }
 `;
 
 const ChartTitle = styled.div`
