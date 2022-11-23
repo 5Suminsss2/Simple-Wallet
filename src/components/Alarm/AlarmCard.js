@@ -34,6 +34,7 @@ import axios from "axios";
     @media screen and (min-width: 1200px) {
       margin-right: 10px;
       flex-wrap: wrap;
+      padding: 5px 8px;
     }
   `;
 
@@ -44,6 +45,10 @@ import axios from "axios";
 
   const AlarmItemsContents = styled.div`
     display: flex;
+
+    @media screen and (min-width: 1200px) {
+      width: 90%;
+    }
   `;
 
 function AlarmCard({ data }) {
