@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { AiFillStar, AiOutlineClose } from "react-icons/ai";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { goalDatasetState, totalState } from "../../store/atom";
+import axios from "axios";
 
 // CSS
 
@@ -51,9 +52,13 @@ function GoalCard({ data }) {
   const [dataset, setDataset] = useRecoilState(goalDatasetState); // 기존 목표 내역
 
   // 목표 알림 제거하기
-  const handleRemove = () => {
+  const handleRemove = async ({ id }) => {
     let filtered = dataset.filter((element) => element !== data);
-    setDataset(filtered);
+
+    await axios.delete(`http://localhost:4000/goalData/${id}`).then(
+      // 삭제 버튼 누르는 즉시 새로고침 없이 등록
+      setDataset(filtered)
+    );
   };
 
   return (
@@ -69,7 +74,12 @@ function GoalCard({ data }) {
           </AlarmText>
         )}
       </AlarmItemsContents>
-      <AlarmItemsclose onClick={handleRemove}>
+      <AlarmItemsclose
+        type="button"
+        onClick={() => {
+          handleRemove({ id: data.id });
+        }}
+      >
         <AiOutlineClose />
       </AlarmItemsclose>
     </AlarmItems>

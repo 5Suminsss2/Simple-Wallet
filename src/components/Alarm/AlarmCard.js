@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { AiFillBell, AiOutlineClose } from "react-icons/ai";
 import { useRecoilState } from "recoil";
 import { alarmDatasetState } from "../../store/atom";
+import axios from "axios";
 
 // CSS
   const AlarmItemsclose = styled.div`
@@ -50,9 +51,13 @@ function AlarmCard({ data }) {
   const [dataset, setDataset] = useRecoilState(alarmDatasetState); // 기존 알람 내역
 
   // 목표 알림 제거하기
-  const handleRemove = () => {
+  const handleRemove = async ({ id }) => {
     let filtered = dataset.filter((element) => element !== data);
-    setDataset(filtered);
+
+    await axios.delete(`http://localhost:4000/alarmData/${id}`).then(
+      // 삭제 버튼 누르는 즉시 새로고침 없이 등록
+      setDataset(filtered)
+    );
   };
   
   // 디데이 계산기
@@ -84,7 +89,7 @@ function AlarmCard({ data }) {
           </AlarmText>
         )}
       </AlarmItemsContents>
-      <AlarmItemsclose onClick={handleRemove}>
+      <AlarmItemsclose type="button" onClick={()=>{handleRemove({id: data.id})}}>
         <AiOutlineClose />
       </AlarmItemsclose>
     </AlarmItems>

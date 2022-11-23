@@ -94,6 +94,7 @@ function AlarmModal() {
     date: "",
     alarmContents: "",
     price: 0,
+    id: dataset.length + 1
   });
 
   const { year, month, date, alarmContents, price } = inputs;

@@ -164,7 +164,8 @@ function CreateAccountHistory({onSubmit}) {
     month: "",
     date: "",
     accountContents: "",
-    price: 0
+    price: 0,
+    id: dataset.length + 1
   });
   
   const { year, month, date, accountContents, price  } = inputs;

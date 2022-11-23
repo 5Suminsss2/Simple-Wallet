@@ -82,6 +82,7 @@ function GoalModal() {
     endDate: "",
     goalContents: "",
     price: 0,
+    id: dataset.length + 1,
   });
 
   const {

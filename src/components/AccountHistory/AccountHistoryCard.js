@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { AiOutlineClose } from "react-icons/ai";
 import { datasetState } from "../../store/atom";
 import { useRecoilState } from "recoil";
+import axios from "axios";
 
 // CSS
   const AccountHistoryClose = styled.div`
@@ -61,9 +62,14 @@ function AccountHistoryCard({ data }) {
   const price = Number(data.price).toLocaleString("ko-KR");
 
   // 입출금 내역 제거하기
-  const handleRemove = () => {
+  const handleRemove = async({id}) => {
     let filtered = dataset.filter((element) => element !== data);
-    setDataset(filtered);
+
+    await axios.delete(`http://localhost:4000/accountHistoryData/${id}`)
+      .then(
+        // 삭제 버튼 누르는 즉시 새로고침 없이 등록
+        setDataset(filtered)
+      )
   };
 
   // 10 이하인 경우 숫자 앞에 0 붙이기
@@ -85,7 +91,7 @@ function AccountHistoryCard({ data }) {
           )}
         </AccountHistoryContents>
       </AccountHistoryPart>
-      <AccountHistoryClose onClick={handleRemove}>
+      <AccountHistoryClose type="button" onClick={()=>{handleRemove({id: data.id})}}>
         <AiOutlineClose />
       </AccountHistoryClose>
     </AccountHistoryDetail>
