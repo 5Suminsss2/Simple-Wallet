@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import GlobalModal from "./GlobalModal";
-import { goalModalState, goalDatasetState, datasetState } from "../../store/atom";
+import { goalModalState, goalDatasetState } from "../../store/atom";
 import axios from "axios";
 
 // CSS
