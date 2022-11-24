@@ -24,6 +24,9 @@ const CreateAccountHistoryContainer = styled.div`
   @media screen and (min-width: 1600px) {
     width: 350px;
   }
+  @media screen and (max-width: 1200px) {
+    display: ${(props) => props.display || "block"};
+  }
 `;
 
 const CreateAccountHistoryHeader = styled.div`
@@ -244,15 +247,6 @@ function CreateAccountHistory({onSubmit}) {
     }
   },[deposit])
 
-  useEffect(()=>{
-    // 화면 사이즈에 따라 입출금 폼 보여주기 여부 판별
-    if(window.screen.width > 1200){
-      setOpen(true);
-     } else {
-      setOpen(false);
-     }
-  },[])
-
   return (
     <div>
       {open === true ? (
@@ -340,7 +334,6 @@ function CreateAccountHistory({onSubmit}) {
               />
             </form>
           </CreateAccountHistoryContainer>
-
           <ButtonCotainer>
             <Button backgroundColor="#fff" onClick={handleSubmit}>
               등록
@@ -355,7 +348,92 @@ function CreateAccountHistory({onSubmit}) {
           </ButtonCotainer>
         </div>
       ) : (
-        <Button onClick={handleAddHistory}>새 거래내역 추가</Button>
+        <>
+          <Button onClick={handleAddHistory}>새 거래내역 추가</Button>
+          <CreateAccountHistoryContainer display="none">
+            <CreateAccountHistoryHeader>
+              <CreateAccountHistoryTitle>
+                새 거래 내역
+              </CreateAccountHistoryTitle>
+              <SubmitButton backgroundColor="#fff" onClick={handleSubmit}>
+                등록
+              </SubmitButton>
+            </CreateAccountHistoryHeader>
+            <form onSubmit={onSubmit}>
+              <Label>날짜</Label>
+              <DateInputBox>
+                <DateInput
+                  placeholder="2023"
+                  name="year"
+                  value={year}
+                  onChange={onChange}
+                  type="number"
+                  min="2015"
+                  max="2100"
+                />
+                <DateInput
+                  placeholder="1"
+                  name="month"
+                  value={month}
+                  onChange={onChange}
+                  type="number"
+                  min="1"
+                  max="12"
+                />
+                <DateInput
+                  placeholder="1"
+                  name="date"
+                  value={date}
+                  onChange={onChange}
+                  type="number"
+                  min="1"
+                  max="31"
+                />
+              </DateInputBox>
+              <Label>내용</Label>
+              {deposit === true ? (
+                <ContentButtonBox>
+                  <ContentButton
+                    onClick={handleDeposit}
+                    color="#d3d3d3"
+                    disabled
+                  >
+                    입금
+                  </ContentButton>
+                  <ContentButton onClick={handleDeposit}>출금</ContentButton>
+                </ContentButtonBox>
+              ) : (
+                <ContentButtonBox>
+                  <ContentButton onClick={handleDeposit}>입금</ContentButton>
+                  <ContentButton
+                    onClick={handleDeposit}
+                    color="#d3d3d3"
+                    disabled
+                  >
+                    출금
+                  </ContentButton>
+                </ContentButtonBox>
+              )}
+              <Input
+                placeholder="페퍼로니 피자 1판"
+                marginBottom="10px"
+                name="accountContents"
+                value={accountContents}
+                onChange={onChange}
+              />
+              <br />
+              <Label>금액</Label>
+              <Input
+                type="number"
+                placeholder="15,000"
+                marginTop="5px"
+                name="price"
+                value={price === 0 ? undefined : price}
+                onChange={onChange}
+              />
+            </form>
+          </CreateAccountHistoryContainer>
+        </>
       )}
     </div>
   );
