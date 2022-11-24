@@ -117,6 +117,25 @@ function GoalModal() {
 
   // 새 거래내역 등록 버튼 눌렀을 때
   const handleSubmit = async () => {
+    // 입력값 확인
+    if (startYear.length < 1) {
+      return alert("시작 연도를 입력하세요");
+    } else if (startMonth.length < 1) {
+      return alert("시작 월을 입력하세요");
+    } else if (startDate.length < 1) {
+      return alert("시작 일을 입력하세요");
+    } else if (endYear.length < 1) {
+      return alert("종료 연도를 입력하세요");
+    } else if (endMonth.length < 1) {
+      return alert("종료 월을 입력하세요");
+    } else if (endDate.length < 1) {
+      return alert("종료 일을 입력하세요");
+    } else if (goalContents.length < 1) {
+      return alert("내용을 입력하세요");
+    } else if (price < 1) {
+      return alert("금액을 입력하세요");
+    }
+
     if (dataset.length < 2) {
       await axios.post("http://localhost:4000/goalData", inputs).then((res) => {
         // 등록 즉시 화면에 반영될 수 있도록 설정

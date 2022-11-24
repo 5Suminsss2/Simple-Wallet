@@ -126,6 +126,18 @@ function AlarmModal() {
 
   // 새 거래내역 등록 버튼 눌렀을 때
   const handleSubmit = async () => {
+    if (year.length < 1) {
+      return alert("연도를 입력하세요");
+    } else if (month.length < 1) {
+      return alert("월을 입력하세요");
+    } else if (date.length < 1) {
+      return alert("일을 입력하세요");
+    } else if (alarmContents.length < 1) {
+      return alert("내용을 입력하세요");
+    } else if (price < 1) {
+      return alert("금액을 입력하세요");
+    }
+
     // 데이터 2개까지만 입력 제한
     if (dataset.length < 2) {
       await axios
