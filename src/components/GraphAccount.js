@@ -5,32 +5,6 @@ import { ResponsiveBar } from "@nivo/bar";
 import styled from "styled-components";
 import { useEffect } from "react";
 
-const ChartContainer = styled.div`
-  height: 200px;
-  width: 340px;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px,
-    rgb(60 64 67 / 15%) 0px 2px 6px 2px;
-
-  @media screen and (min-width: 1200px) {
-    margin-top: 35px;
-    margin-left: 30px;
-    height: 222px;
-    width: 25vw;
-  }
-
-  @media screen and (min-width: 1600px) {
-    width: 400px;
-  }
-`;
-
-const ChartTitle = styled.div`
-  color: #2b2b2b;
-  font-weight: 700;
-`;
-
 function GraphAccount({ dataset }) {
   const today = new Date(); // 오늘 날짜
 
@@ -137,5 +111,32 @@ function GraphAccount({ dataset }) {
     </ChartContainer>
   );
 }
+
+// CSS
+const ChartContainer = styled.div`
+  height: 200px;
+  width: 340px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgb(60 64 67 / 30%) 0px 1px 2px 0px,
+    rgb(60 64 67 / 15%) 0px 2px 6px 2px;
+
+  @media screen and (min-width: 1200px) {
+    margin-top: 35px;
+    margin-left: 30px;
+    height: 222px;
+    width: 25vw;
+  }
+
+  @media screen and (min-width: 1600px) {
+    width: 400px;
+  }
+`;
+
+const ChartTitle = styled.div`
+  color: #2b2b2b;
+  font-weight: 700;
+`;
 
 export default GraphAccount;

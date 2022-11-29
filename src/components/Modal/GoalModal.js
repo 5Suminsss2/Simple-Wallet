@@ -5,68 +5,12 @@ import GlobalModal from "./GlobalModal";
 import { goalModalState, goalDatasetState } from "../../store/atom";
 import axios from "axios";
 
-// CSS
-  const Label = styled.label`
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-  `;
-
-  const DateInputBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 340px;
-    margin: 5px 0 10px 0;
-  `;
-
-  const DateInput = styled.input`
-    width: 28%;
-    height: 30px;
-    border-radius: 10px;
-    border: none;
-    padding-left: 10px;
-  `;
-
-  const Input = styled.input`
-    width: 330px;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    padding-left: 10px;
-    margin-top: ${(props) => props.marginTop || 0};
-    margin-bottom: ${(props) => props.marginBottom || 0};
-  `;
-
-  const ModalButtonContainer = styled.div`
-    margin-top: 30px;
-    text-align: center;
-  `;
-
-  const ModalButton = styled.button`
-    width: 80px;
-    height: 35px;
-    margin-right: ${(props) => props.marginRight};
-    background-color: ${(props) => props.backgroundColor};
-    border: none;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    cursor: pointer;
-    &:hover {
-      background-color: grey;
-    }
-  `;
 
 function GoalModal() {
   // 목표 모달 각각 상태값 가져오기
   const [goalOpen, setGoalOpen] = useRecoilState(goalModalState);
-
-  // 닫기 버튼 눌렀을 때
-  const handleCancel = () => {
-    if (goalOpen === true) {
-      setGoalOpen(false);
-    }
-  };
+  // 기존 거래 내역
+  const [dataset, setDataset] = useRecoilState(goalDatasetState);
 
   // 무작위 id 생성
   const uuidv4 = () => {
@@ -79,9 +23,6 @@ function GoalModal() {
       }
     );
   };
-
-  // 기존 거래 내역
-  const [dataset, setDataset] = useRecoilState(goalDatasetState);
 
   // 새 거래 내역
   const [inputs, setInputs] = useState({
@@ -107,6 +48,14 @@ function GoalModal() {
     price,
   } = inputs;
 
+  // 닫기 버튼 눌렀을 때
+  const handleCancel = () => {
+    if (goalOpen === true) {
+      setGoalOpen(false);
+    }
+  };
+
+  // input 값 변화했을 때 동작하는 함수
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputs({
@@ -137,7 +86,7 @@ function GoalModal() {
     }
 
     if (dataset.length < 2) {
-      await axios.post("http://localhost:4000/goalData", inputs).then((res) => {
+      await axios.post(`${process.env.REACT_APP_API_URL}/goalData`, inputs).then((res) => {
         // 등록 즉시 화면에 반영될 수 있도록 설정
         setDataset([inputs, ...dataset]);
 
@@ -260,5 +209,53 @@ function GoalModal() {
     </GlobalModal>
   );
 }
+
+
+// CSS
+const Label = styled.label`
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+`;
+const DateInputBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+  margin: 5px 0 10px 0;
+`;
+const DateInput = styled.input`
+  width: 28%;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 10px;
+`;
+const Input = styled.input`
+  width: 330px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 10px;
+  margin-top: ${(props) => props.marginTop || 0};
+  margin-bottom: ${(props) => props.marginBottom || 0};
+`;
+const ModalButtonContainer = styled.div`
+  margin-top: 30px;
+  text-align: center;
+`;
+const ModalButton = styled.button`
+  width: 80px;
+  height: 35px;
+  margin-right: ${(props) => props.marginRight};
+  background-color: ${(props) => props.backgroundColor};
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: grey;
+  }
+`;
 
 export default GoalModal;

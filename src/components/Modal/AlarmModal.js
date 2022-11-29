@@ -5,86 +5,11 @@ import styled from "styled-components";
 import { alarmDatasetState, alarmModalState } from "../../store/atom";
 import GlobalModal from "./GlobalModal";
 
-// CSS
-  const Label = styled.label`
-    color: #fff;
-    font-weight: 700;
-    font-size: 14px;
-  `;
-
-  const DateInputBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-    width: 340px;
-    margin: 5px 0 10px 0;
-  `;
-
-  const DateInput = styled.input`
-    width: 28%;
-    height: 30px;
-    border-radius: 10px;
-    border: none;
-    padding-left: 10px;
-  `;
-
-  const ContentButtonBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-  `;
-
-  const ContentButton = styled.button`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 48%;
-    height: 40px;
-    margin: 5px 0 10px 0;
-    border: none;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    background-color: ${(props) => props.color || "#fff"};
-    cursor: pointer;
-    &:hover {
-      background-color: #d9d9d9;
-    }
-  `;
-  const Input = styled.input`
-    width: 330px;
-    height: 40px;
-    border-radius: 10px;
-    border: none;
-    padding-left: 10px;
-    margin-top: ${(props) => props.marginTop || 0};
-    margin-bottom: ${(props) => props.marginBottom || 0};
-  `;
-
-  const ModalButtonContainer = styled.div`
-    margin-top: 30px;
-    text-align: center;
-  `;
-
-  const ModalButton = styled.button`
-    width: 80px;
-    height: 35px;
-    margin-right: ${(props) => props.marginRight};
-    background-color: ${(props) => props.backgroundColor};
-    border: none;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    cursor: pointer;
-    &:hover {
-      background-color: grey;
-    }
-  `;
 
 function AlarmModal() {
   const [deposit, setDeposit] = useState(true); // 입출금 버튼
   const [alarmOpen, setAlarmOpen] = useRecoilState(alarmModalState); // 알람 모달 상태값 가져오기
-
-  // 기존 거래 내역
-  const [dataset, setDataset] = useRecoilState(alarmDatasetState);
+  const [dataset, setDataset] = useRecoilState(alarmDatasetState); // 기존 거래 내역
 
   // 무작위 id 생성
   const uuidv4 = () => {
@@ -111,6 +36,8 @@ function AlarmModal() {
 
   const { year, month, date, alarmContents, price } = inputs;
 
+
+  // input 값 변화 시 동작하는 함수
   const onChange = (e) => {
     const { name, value } = e.target;
     setInputs({
@@ -141,7 +68,7 @@ function AlarmModal() {
     // 데이터 2개까지만 입력 제한
     if (dataset.length < 2) {
       await axios
-        .post("http://localhost:4000/alarmData", inputs)
+        .post(`${process.env.REACT_APP_API_URL}/alarmData`, inputs)
         .then((res) => {
           // 등록 즉시 화면에 반영될 수 있도록 설정
           setDataset([inputs, ...dataset]);
@@ -271,5 +198,74 @@ function AlarmModal() {
     </GlobalModal>
   );
 }
+
+
+// CSS
+const Label = styled.label`
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+`;
+const DateInputBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 340px;
+  margin: 5px 0 10px 0;
+`;
+const DateInput = styled.input`
+  width: 28%;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 10px;
+`;
+const ContentButtonBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const ContentButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48%;
+  height: 40px;
+  margin: 5px 0 10px 0;
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  background-color: ${(props) => props.color || "#fff"};
+  cursor: pointer;
+  &:hover {
+    background-color: #d9d9d9;
+  }
+`;
+const Input = styled.input`
+  width: 330px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 10px;
+  margin-top: ${(props) => props.marginTop || 0};
+  margin-bottom: ${(props) => props.marginBottom || 0};
+`;
+const ModalButtonContainer = styled.div`
+  margin-top: 30px;
+  text-align: center;
+`;
+const ModalButton = styled.button`
+  width: 80px;
+  height: 35px;
+  margin-right: ${(props) => props.marginRight};
+  background-color: ${(props) => props.backgroundColor};
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: grey;
+  }
+`;
 
 export default AlarmModal;

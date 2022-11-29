@@ -4,56 +4,6 @@ import { datasetState } from "../../store/atom";
 import { useRecoilState } from "recoil";
 import axios from "axios";
 
-// CSS
-  const AccountHistoryClose = styled.div`
-    display: none;
-    margin-top: 5px;
-    cursor: pointer;
-  `;
-
-  const AccountHistoryDetail = styled.div`
-    display: flex;
-    justify-content: space-between;
-    height: 55px;
-    margin-bottom: 10px;
-    padding: 5px 10px 0 10px;
-    font-size: 14px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    &:hover ${AccountHistoryClose} {
-      display: block;
-    }
-    &:hover {
-      background-color: #fcfbe8;
-    }
-  `;
-
-  const AccountHistoryPart = styled.div`
-    width: 100%;
-  `;
-
-  const AccountHistoryTitle = styled.div`
-      font-size: 15px;
-  `
-
-  const AccountHistoryDate = styled.div`
-      padding: 5px 0;
-      font-size: 11px;
-  `;
-
-  const AccountHistoryContents = styled.div`
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-  `;
-  const Price = styled.div`
-    font-size: 15px;
-    font-weight: 900;
-    color: #808080;
-  `;
 
 function AccountHistoryCard({ data }) {
   const [dataset, setDataset] = useRecoilState(datasetState); // 기존 알람 내역
@@ -65,7 +15,7 @@ function AccountHistoryCard({ data }) {
   const handleRemove = async({id}) => {
     let filtered = dataset.filter((element) => element !== data);
 
-    await axios.delete(`http://localhost:4000/accountHistoryData/${id}`)
+    await axios.delete(`${process.env.REACT_APP_API_URL}/accountHistoryData/${id}`)
       .then(
         // 삭제 버튼 누르는 즉시 새로고침 없이 등록
         setDataset(filtered)
@@ -97,5 +47,57 @@ function AccountHistoryCard({ data }) {
     </AccountHistoryDetail>
   );
 }
+
+// CSS
+const AccountHistoryClose = styled.div`
+  display: none;
+  margin-top: 5px;
+  cursor: pointer;
+`;
+
+const AccountHistoryDetail = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 55px;
+  margin-bottom: 10px;
+  padding: 5px 10px 0 10px;
+  font-size: 14px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  &:hover ${AccountHistoryClose} {
+    display: block;
+  }
+  &:hover {
+    background-color: #fcfbe8;
+  }
+`;
+
+const AccountHistoryPart = styled.div`
+  width: 100%;
+`;
+
+const AccountHistoryTitle = styled.div`
+    font-size: 15px;
+`
+
+const AccountHistoryDate = styled.div`
+    padding: 5px 0;
+    font-size: 11px;
+`;
+
+const AccountHistoryContents = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+`;
+
+const Price = styled.div`
+  font-size: 15px;
+  font-weight: 900;
+  color: #808080;
+`;
 
 export default AccountHistoryCard;

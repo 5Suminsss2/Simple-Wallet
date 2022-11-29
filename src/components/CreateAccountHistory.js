@@ -4,157 +4,6 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { datasetState } from "../store/atom";
 
-// CSS
-const CreateAccountHistoryContainer = styled.div`
-  width: 340px;
-  padding: 15px;
-  margin-bottom: 30px;
-  border-radius: 10px;
-  background: linear-gradient(45deg, #98a8f0, #b09bf0);
-
-  @media screen and (min-width: 1200px) {
-    width: 23vw;
-    height: 300px;
-    margin-left: 30px;
-    margin-bottom: 1px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  }
-
-  @media screen and (min-width: 1600px) {
-    width: 350px;
-  }
-  @media screen and (max-width: 1200px) {
-    display: ${(props) => props.display || "block"};
-  }
-`;
-
-const CreateAccountHistoryHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-`
-
-const CreateAccountHistoryTitle = styled.div`
-  font-size: 16px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 10px;
-`;
-
-// 등록 취소 버튼 
-const ButtonCotainer = styled.div`
-  @media screen and (min-width: 1200px) {
-    display: flex;
-    
-  }
-`;
-
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 370px;
-  height: 40px;
-  margin: 10px auto;
-  border-radius: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  color: ${(props) => props.color || "#000"};
-  background-color: ${(props) => props.backgroundColor};
-  cursor: pointer;
-  &:hover {
-    background-color: #d3d3d3;
-    color: #979694;
-  }
-  font-weight: 700;
-
-  @media screen and (min-width: 1200px) {
-      display: none;
-  }
-`;    
-
-// wide 창일 때, 등록 버튼
-const SubmitButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: 700;
-  color: #000;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  cursor: pointer;
-  &:hover {
-    background-color: #d3d3d3;
-    color: #979694;
-  }
-  @media screen and (max-width: 1200px) {
-    display: none;
-  }
-`;
-
-// form css
-const Label = styled.label`
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
-`;
-
-const DateInputBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  margin: 5px 0 10px 0;
-`;
-
-const DateInput = styled.input`
-  width: 28%;
-  height: 30px;
-  border-radius: 10px;
-  border: none;
-  padding-left: 10px;
-`;
-
-const Input = styled.input`
-  width: 97%;
-  height: 40px;
-  border-radius: 10px;
-  border: none;
-  padding-left: 10px;
-  margin-top: ${(props) => props.marginTop || 0};
-  margin-bottom: ${(props) => props.marginBottom || 0};
-`;
-
-
-// 입출금 버튼 CSS
-const ContentButtonBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
-const ContentButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 48%;
-  height: 40px;
-  margin: 5px 0 10px 0;
-  border: none;
-  border-radius: 10px;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-  background-color: ${(props) => props.color || "#fff"};
-  font-weight: 700;
-  cursor: pointer;
-  &:hover {
-    background-color: #d3d3d3;
-  }
-`;
-
 
 function CreateAccountHistory({onSubmit}) {
 
@@ -222,23 +71,23 @@ function CreateAccountHistory({onSubmit}) {
       return alert("금액을 입력하세요");
     }
 
-      await axios
-        .post("http://localhost:4000/accountHistoryData", inputs)
-        .then((res) => {
-          // 등록 즉시 화면에 반영될 수 있도록 설정
-          setDataset([inputs, ...dataset]);
-          // input 값 초기화
-          setInputs({
-            accountType: "Deposit",
-            year: "",
-            month: "",
-            date: "",
-            accountContents: "",
-            price: 0,
-          });
-          setDeposit(true);
-          setOpen(false);
-        }); 
+    await axios
+      .post(`${process.env.REACT_APP_API_URL}/accountHistoryData`, inputs)
+      .then((res) => {
+        // 등록 즉시 화면에 반영될 수 있도록 설정
+        setDataset([inputs, ...dataset]);
+        // input 값 초기화
+        setInputs({
+          accountType: "Deposit",
+          year: "",
+          month: "",
+          date: "",
+          accountContents: "",
+          price: 0,
+        });
+        setDeposit(true);
+        setOpen(false);
+     }); 
   }
 
   // 새 거래내역 닫기 버튼 눌렀을 때
@@ -452,5 +301,156 @@ function CreateAccountHistory({onSubmit}) {
     </div>
   );
 }
+
+// CSS
+const CreateAccountHistoryContainer = styled.div`
+  width: 340px;
+  padding: 15px;
+  margin-bottom: 30px;
+  border-radius: 10px;
+  background: linear-gradient(45deg, #98a8f0, #b09bf0);
+
+  @media screen and (min-width: 1200px) {
+    width: 23vw;
+    height: 300px;
+    margin-left: 30px;
+    margin-bottom: 1px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+
+  @media screen and (min-width: 1600px) {
+    width: 350px;
+  }
+  @media screen and (max-width: 1200px) {
+    display: ${(props) => props.display || "block"};
+  }
+`;
+
+const CreateAccountHistoryHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const CreateAccountHistoryTitle = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+`;
+
+// 등록 취소 버튼 
+const ButtonCotainer = styled.div`
+  @media screen and (min-width: 1200px) {
+    display: flex;
+    
+  }
+`;
+
+const Button = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 370px;
+  height: 40px;
+  margin: 10px auto;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  color: ${(props) => props.color || "#000"};
+  background-color: ${(props) => props.backgroundColor};
+  cursor: pointer;
+  &:hover {
+    background-color: #d3d3d3;
+    color: #979694;
+  }
+  font-weight: 700;
+
+  @media screen and (min-width: 1200px) {
+      display: none;
+  }
+`;    
+
+// wide 창일 때, 등록 버튼
+const SubmitButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  font-size: 13px;
+  font-weight: 700;
+  color: #000;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: #d3d3d3;
+    color: #979694;
+  }
+  @media screen and (max-width: 1200px) {
+    display: none;
+  }
+`;
+
+// form css
+const Label = styled.label`
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+`;
+
+const DateInputBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 5px 0 10px 0;
+`;
+
+const DateInput = styled.input`
+  width: 28%;
+  height: 30px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 10px;
+`;
+
+const Input = styled.input`
+  width: 97%;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  padding-left: 10px;
+  margin-top: ${(props) => props.marginTop || 0};
+  margin-bottom: ${(props) => props.marginBottom || 0};
+`;
+
+
+// 입출금 버튼 CSS
+const ContentButtonBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ContentButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48%;
+  height: 40px;
+  margin: 5px 0 10px 0;
+  border: none;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  background-color: ${(props) => props.color || "#fff"};
+  font-weight: 700;
+  cursor: pointer;
+  &:hover {
+    background-color: #d3d3d3;
+  }
+`;
 
 export default CreateAccountHistory;

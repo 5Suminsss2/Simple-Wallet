@@ -5,14 +5,6 @@ import GoalCard from "./GoalCard";
 import AlarmCard from "./AlarmCard";
 
 function Alarm() {
-  // CSS
-  const AlarmContainer = styled.section`
-    margin-top: 10px;
-    @media screen and (min-width: 1200px) {
-      display: flex;
-      width: 100%;
-    }
-  `;
 
   // 목표 데이터 가져오기
   const goalDataset = useRecoilValue(goalDatasetState);
@@ -35,5 +27,14 @@ function Alarm() {
     </AlarmContainer>
   );
 }
+
+// CSS
+const AlarmContainer = styled.section`
+  margin-top: 10px;
+  @media screen and (min-width: 1200px) {
+    display: flex;
+    width: 100%;
+  }
+`;
 
 export default Alarm;

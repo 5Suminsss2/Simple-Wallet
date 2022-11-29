@@ -4,53 +4,6 @@ import { useRecoilState } from "recoil";
 import { alarmDatasetState } from "../../store/atom";
 import axios from "axios";
 
-// CSS
-  const AlarmItemsclose = styled.div`
-    display: flex;
-    position: relative;
-    right: -20px;
-    width: 10px;
-    transition: 0.3s;
-    cursor: pointer;
-  `;
-
-  const AlarmItems = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 30px;
-    width: 350px;
-    padding: 3px 8px;
-    margin-top: 10px;
-    border-radius: 10px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    overflow: hidden;
-    &:hover ${AlarmItemsclose} {
-      transition: 0.3s;
-      right: 10px;
-    }
-
-    @media screen and (min-width: 1200px) {
-      margin-right: 10px;
-      flex-wrap: wrap;
-      padding: 5px 8px;
-    }
-  `;
-
-  const AlarmText = styled.div`
-    margin-left: 5px;
-    font-size: 13px;
-  `;
-
-  const AlarmItemsContents = styled.div`
-    display: flex;
-
-    @media screen and (min-width: 1200px) {
-      width: 90%;
-    }
-  `;
-
 function AlarmCard({ data }) {
   
   const [dataset, setDataset] = useRecoilState(alarmDatasetState); // 기존 알람 내역
@@ -59,7 +12,7 @@ function AlarmCard({ data }) {
   const handleRemove = async ({ id }) => {
     let filtered = dataset.filter((element) => element !== data);
 
-    await axios.delete(`http://localhost:4000/alarmData/${id}`).then(
+    await axios.delete(`${process.env.REACT_APP_API_URL}/alarmData/${id}`).then(
       // 삭제 버튼 누르는 즉시 새로고침 없이 등록
       setDataset(filtered)
     );
@@ -100,5 +53,50 @@ function AlarmCard({ data }) {
     </AlarmItems>
   );
 }
+
+
+// CSS
+const AlarmItemsclose = styled.div`
+  display: flex;
+  position: relative;
+  right: -20px;
+  width: 10px;
+  transition: 0.3s;
+  cursor: pointer;
+`;
+const AlarmItems = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+  width: 350px;
+  padding: 3px 8px;
+  margin-top: 10px;
+  border-radius: 10px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  overflow: hidden;
+  &:hover ${AlarmItemsclose} {
+    transition: 0.3s;
+    right: 10px;
+  }
+  @media screen and (min-width: 1200px) {
+    margin-right: 10px;
+    flex-wrap: wrap;
+    padding: 5px 8px;
+  }
+`;
+
+const AlarmItemsContents = styled.div`
+  display: flex;
+  @media screen and (min-width: 1200px) {
+    width: 90%;
+  }
+`;
+
+const AlarmText = styled.div`
+  margin-left: 5px;
+  font-size: 13px;
+`;
 
 export default AlarmCard;

@@ -5,6 +5,43 @@ import styled from "styled-components";
 import usePromise from "../../hooks/usePromise";
 import NewsItems from "./NewsItems";
 
+function NewsContainer() {
+  // promise로 response 되기에 데이터를 받아오려면 비동기로 처리해야함 -> usePromise 사용
+  const [loading, response, error] = usePromise(() => {
+    return axios.get(
+      `https://newsapi.org/v2/top-headlines?country=kr&category=business&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
+    );
+  }, []);
+
+  // 대기중일 때
+  if (loading) {
+    return <Container>Loading...</Container>;
+  }
+  // 아직 response 값이 설정되지 않았을 때
+  if (!response) {
+    return null;
+  }
+
+  // 에러가 발생했을 때
+  if (error) {
+    return <Container>에러 발생!</Container>;
+  }
+
+  // response 값이 유효할 때
+  const { articles } = response.data;
+  return (
+    <Container>
+      <Title>오늘의 경제 뉴스</Title>
+      <Contents>
+        {articles.map((article) => (
+          <NewsItems key={article.url} article={article} />
+        ))}
+      </Contents>
+    </Container>
+  );
+}
+
+//CSS
 const Container = styled.div`
   height: 200px;
   width: 340px;
@@ -44,41 +81,5 @@ const Contents = styled.div`
   flex-direction: column;
   justify-content: center;
 `;
-
-function NewsContainer() {
-  // promise로 response 되기에 데이터를 받아오려면 비동기로 처리해야함 -> usePromise 사용
-  const [loading, response, error] = usePromise(() => {
-    return axios.get(
-      `https://newsapi.org/v2/top-headlines?country=kr&category=business&apiKey=7767a635cea645968ca86b1c41b8f26e`
-    );
-  }, []);
-
-  // 대기중일 때
-  if (loading) {
-    return <Container>Loading...</Container>;
-  }
-  // 아직 response 값이 설정되지 않았을 때
-  if (!response) {
-    return null;
-  }
-
-  // 에러가 발생했을 때
-  if (error) {
-    return <Container>에러 발생!</Container>;
-  }
-
-  // response 값이 유효할 때
-  const { articles } = response.data;
-  return (
-    <Container>
-      <Title>오늘의 경제 뉴스</Title>
-      <Contents>
-        {articles.map((article) => (
-          <NewsItems key={article.url} article={article} />
-        ))}
-      </Contents>
-    </Container>
-  );
-}
 
 export default NewsContainer;

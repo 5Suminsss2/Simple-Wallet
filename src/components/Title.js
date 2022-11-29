@@ -18,7 +18,23 @@ function Title() {
     openGoalModalHandler(true);
   };
 
-  // CSS
+
+  return (
+    <TitleContainer>
+      <TitlePart>Simple Wallet</TitlePart>
+      <IconPart>
+        <IconItem onClick={openGoalModal}>
+          <AiFillStar size="15" color="#98A8F0" />
+        </IconItem>
+        <IconItem onClick={openAlarmModal}>
+          <AiFillBell size="15" color="#98A8F0" />
+        </IconItem>
+      </IconPart>
+    </TitleContainer>
+  );
+}
+
+// CSS
   const TitleContainer = styled.div`
     display: flex;
     width: 100%;
@@ -56,20 +72,5 @@ function Title() {
       box-shadow: none;
     }
   `;
-
-  return (
-    <TitleContainer>
-      <TitlePart>Simple Wallet</TitlePart>
-      <IconPart>
-        <IconItem onClick={openGoalModal}>
-          <AiFillStar size="15" color="#98A8F0" />
-        </IconItem>
-        <IconItem onClick={openAlarmModal}>
-          <AiFillBell size="15" color="#98A8F0" />
-        </IconItem>
-      </IconPart>
-    </TitleContainer>
-  );
-}
 
 export default Title;
