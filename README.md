@@ -280,6 +280,7 @@ json-server --watch data.json --port 4000 // DB server 실행
 - 문제 발생 : 하지만, 그 후 새로고침을 누르면 다시 댓글이 원상복구 되는 문제점을 파악했다.
 
 **해결**
+
 axios delete는 해당 데이터의 id를 찾아 삭제하는 방식으로 운영된다.
 
 하지만, 이번 프로젝트에서 사용한 json-server는 데이터가 입력되는 즉시, id를 반영하지 못하였다.
