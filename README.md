@@ -41,7 +41,7 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 | Mobile 버전        |   Desktop 버전          |
 | ----------------------- | -------------------------- |
-| ![](./docs/webMain.PNG) | ![](./docs/webGuestBook.PNG) |
+| ![](./docs/mobile_main.PNG) | ![](./docs/desktop_main.PNG) |
 
 
 ### 알림 기능
@@ -54,29 +54,19 @@ json-server --watch data.json --port 4000 // DB server 실행
 | ---------------------- | ----------------------------- | ---------------------- | ----------------------------- |
 | ![](./docs/signup.PNG) | ![](./docs/resetUserInfo.gif) |![](./docs/signup.PNG) | ![](./docs/resetUserInfo.gif)  |
 
-### 총 입출금 금액 계산 기능
+### 입출금 관리 기능
 
-| 총 입출금 금액 계산             | 
+| 총 입출금 금액 입력 시, 총 입출금 금액 계산 및 그래프 실시간 반영             | 
 | ----------------------------- |
-| ![](./docs/createComment.gif) | 
-
-### 입출금 분석 그래프 기능 
-
-| 입출금 분석 그래프 기능             | 
-| ----------------------------- |
-| ![](./docs/createComment.gif) | 
+| ![](./docs/total.gif) | 
+ 
 
 ### 경제 뉴스 추천 기능
 
 | 경제 뉴스 추천 기능      |
 | ---------------------- |
-| ![](./docs/random.PNG) |
+| ![](./docs/random.gif) |
 
-### 입출금 입력 기능
-
-| 입출금 입력 기능     |
-| ---------------------- |
-| ![](./docs/random.PNG) |
 
 ---
 
@@ -86,7 +76,7 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 **모바일 버전 레이아웃**
 
-![](./docs/defaultFlow.PNG)
+![](./docs/layout.PNG)
 
 **데스크탑 버전 레이아웃**
 
