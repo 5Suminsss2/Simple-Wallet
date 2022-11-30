@@ -18,9 +18,10 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 - React
 - CSS3 & HTML
-- javascript
+- Javascript
 - Recoil
 - Styled-Component
+- Yarn
 - Figma (레이아웃)
 - json-server (서버 라이브러리)
 
@@ -261,10 +262,10 @@ json-server --watch data.json --port 4000 // DB server 실행
 - 그래서 useEffect와 useState를 사용해서 코드를 수정했지만 이슈를 해결하지 못하였다.
 
 2. 해결방안
-- 리액트에서 리렌더링 되는 조건에 대해서 다시 조사하였다.
-1) 컴포넌트 자신의 state가 변하기
-2) 부모 컴포넌트로부터 받는 props가 변하기
-3) 부모 컴포넌트가 리렌더링 되기
+리액트에서 리렌더링 되는 조건에 대해서 다시 조사하였다.
+- 컴포넌트 자신의 state가 변하기
+- 부모 컴포넌트로부터 받는 props가 변하기
+- 부모 컴포넌트가 리렌더링 되기
 
 이 중, 부모 컴포넌트로부터 받는 props가 변하기를 적용하여 코드를 수정했더니 이슈를 해결할 수 있었다.
 
@@ -279,9 +280,12 @@ json-server --watch data.json --port 4000 // DB server 실행
 - 문제 발생 : 하지만, 그 후 새로고침을 누르면 다시 댓글이 원상복구 되는 문제점을 파악했다.
 
 **해결**
-- axios delete는 해당 데이터의 id를 찾아 삭제하는 방식으로 운영된다.
-- 하지만, 이번 프로젝트에서 사용한 json-server는 데이터가 입력되는 즉시, id를 반영하지 못하였다.
-- 그렇기에, 임의의 id(기존 데이터 개수 + 1)를 데이터 생성할 때 넣어주었다.
+axios delete는 해당 데이터의 id를 찾아 삭제하는 방식으로 운영된다.
+
+하지만, 이번 프로젝트에서 사용한 json-server는 데이터가 입력되는 즉시, id를 반영하지 못하였다.
+
+그렇기에, 임의의 id(기존 데이터 개수 + 1)를 데이터 생성할 때 넣어주었다.
+
 ``` js
    const [dataset, setDataset] = useRecoilState(datasetState); //기존 데이터
    const [inputs, setInputs] = useState({
@@ -294,9 +298,9 @@ json-server --watch data.json --port 4000 // DB server 실행
     id: datasetState.length + 1, // 기존 데이터 개수의 +1을 하여 id 구상
   });
 ```
-- 이렇게 되면 문제점이, 총 3개의 데이터가 있고, id가 2인 데이터를 삭제한 후에 새 데이터를 등록하면 id가 3인 데이터로 생성되고 기존 id가 3이었던 데이터와 충돌하게 되어 등록이 되지 않는다.
+이렇게 되면 문제점이, 총 3개의 데이터가 있고, id가 2인 데이터를 삭제한 후에 새 데이터를 등록하면 id가 3인 데이터로 생성되고 기존 id가 3이었던 데이터와 충돌하게 되어 등록이 되지 않는다.
 
-- 그래서 id를 숫자가 아닌 무작위의 문자 (uuid)를 생성하여 데이터 생성 시 id로 넣어주어 이슈를 해결하였다.
+그래서 id를 숫자가 아닌 무작위의 문자 (uuid)를 생성하여 데이터 생성 시 id로 넣어주어 이슈를 해결하였다.
 ``` js
    function uuidv4() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -309,7 +313,7 @@ json-server --watch data.json --port 4000 // DB server 실행
     );
    }
   
-   const [inputs, setInputs] = useState({
+    const [inputs, setInputs] = useState({
     accountType: "deposit",
     year: "",
     month: "",
@@ -324,16 +328,103 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 ## 학습한 내용
 
-### recoil로 modal 개발하기
-### json-server
+### recoil로 상태관리 하기
+지난 세미나에서 Redux를 대안할 수 있는 상태관리 라이브러리인 Recoil에 대해서 발표했었다.
+
+이 기술을 적용한 개발을 하는 것이 이번 프로젝트의 핵심 목표였기 때문에 Recoil의 주요 기능을 학습하고 적용했다.
+
+사용한 주요 기능은 다음과 같다.
+``` js
+  // 주요 기능
+  const [total, setTotal] = useRecoilState(totalState); // 1. useRecoilState : 기존 데이터를 수정할 수 있다.
+  const goalDataset = useRecoilValue(goalDatasetState); // 2. useRecoilValue : 기존 데이터가 무엇인지 읽을 수 있다.(ReadOnly라서 수정 불가능)
+```
+
+리덕스처럼 복잡하게 개발하지 않고 atom과 useRecoil__ 기능들을 이용하면 간단하게 상태관리를 할 수 있다는 장점을 파악했다.
+
+
+### 서버를 개발하지 않고 REST API 구축하기
+이번 프로젝트는 프론트만 개발하여 진행해야했고 빠른 시간 내로 진행해야하는 시간 제약이 있었다. 
+
+DB를 사용해야하는 상황이었는데 DB를 사용하기 위해선 백엔드 서버로 접근을 해야 안전하게 DB에 접속할 수 있었다.
+
+주변 사람들의 조언과 여러 검색을 통해 백엔드 서버 코드를 짜지 않아도 db에 접근할 수 있는 도구들이 있다는 사실을 알게 되었다.
+
+1. Firebase
+- firebase에서는 실시간 db를 무료로 제공해준다. 
+- 심지어 간단하게 api 주소만 axios/fetch에 입력하면 db에 데이터를 보내거나 받아오거나 삭제하거나 수정할 수 있다
+
+2. json-server
+- npm install만 하면 간단히 사용할 수 있다.
+- json-server를 실행하는 즉시, db.json이라는 파일이 src 밖에 생기고 그 파일에 모든 데이터가 생성된다.
+- 역시 axios/fetch에 api주소 (localhost:3000/db이름)을 입력하면 GET, POST, DELETE, PUT 모두 접근이 가능하다.
+
+3. 최종 선택
+- 기존에 json파일에 data를 넣어두었기 때문에 json-server로 진행하는 것이 이 프로젝트에서는 더 편리하다고 생각해 json-server를 선택했다.
+- 정말 간단하게 이용할 수 있어 백엔드 서버를 구축할 시간을 아낄 수 있었다. 
+
+
 ### promise
+경제 뉴스 추천 기능을 만들기 위해서 외부 api를 사용했다.
+
+그런데 api에서 준 데이터가 비동기로 처리되어 있어 기존 axios.get 방식으로는 데이터를 받아올 수 없었다.
+
+그래서 promise를 사용해 비동기적으로 데이터를 받아오는 usePromise hook을 만들어 개발했다.
+
+(참고 서적 : react를 다루는 기술 )
+
+``` js
+import { useState, useEffect } from "react";
+
+// promiseCreator : promise를 만들어주는 함수, 데이터를 가져오는 함수(axios,fetch)가 들어가야한다.
+// deps: 의존배열 (이 코드에선 틀을 잡기 위해 임시로 사용)
+
+export default function usePromise(promiseCreator, deps) {
+  // 로딩중 / 완료 / 실패에 대한 상태 관리
+  const [loading, setLoading] = useState(false);
+  const [resolved, setResolved] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const process = async () => {
+        setLoading(true);
+        try {
+          const resolved = await promiseCreator();
+          setResolved(resolved);
+        } catch (e) {
+          setError(e);
+        }
+        setLoading(false);
+      };
+      process();
+    }, deps);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    return [loading, resolved, error];
+  }
+
+  ```
+
 ### styled component 위치 
-- CORS는 추가 HTTP 헤더를 사용하여 한 출처에서 실행 중인 웹 애플리케이션이 다른 출처의 선택한 자원에 접근할 수 있는 권한을 부여하도록 브라우저에게 알려주는 체제
+CSS module을 주로 써와서 Styled-Component에 대해 학습하고 개발에 적용해봤다.
+
+이를 사용할 땐, `Component 함수 스코프 외부`에 위치해야한다.
+
+그렇지 않으면 warning이 뜨고 내 경우엔 input에서 onChange함수가 문제가 발생했다. 
+
+input 값이 바뀔 때마다 리렌더링이 되고 리렌더링 될 때, Styled Component로 꾸며진 부분이 다시 불러오게 되면서 값이 입력이 되지 않는 현상이 나타난다.
+
+그래서 Component 함수 스코프 외부에 위치해야 리렌더링의 영향을 받지 않을 수 있다.
+
 
 
 ## 그 외 기록들
-[토이프로젝트] input 입력 시 한글자만 입력되고 더이상 입력되지 않는 에러가 발생
-[토이프로젝트] useState를 이용해 기존 배열에 값 추가하기
-[토이프로젝트] jsx에서 else if문 사용하는 방법
-[토이프로젝트] Styled-Component에서 구글 폰트 사용하기
-[토이프로젝트] 리액트에서 onClick이 자동으로 동작하는 에러 해결
+개발 블로그에 정리했다.
+- <a href="https://ksumin-dev.tistory.com/129">[토이프로젝트] input 입력 시 한글자만 입력되고 더이상 입력되지 않는 에러가 발생</a>
+
+- <a href="https://ksumin-dev.tistory.com/130">[토이프로젝트] useState를 이용해 기존 배열에 값 추가하기</a>
+
+- <a href="https://ksumin-dev.tistory.com/131">[토이프로젝트] jsx에서 else if문 사용하는 방법</a>
+
+- <a href="https://ksumin-dev.tistory.com/134">[토이프로젝트] Styled-Component에서 구글 폰트 사용하기 </a>
+
+- <a href="https://ksumin-dev.tistory.com/136">[토이프로젝트] 리액트에서 onClick이 자동으로 동작하는 에러 해결 </a>
