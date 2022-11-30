@@ -95,15 +95,16 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 **src/components**
 
-| 파일명(or 함수명) | 역할                                          |
+| 파일명 | 역할                                          |
 | ----------------- | --------------------------------------------- |
-| `AccountHistory`    | 로그인 시 메인 페이지로 이동할 수 있도록 체크 |
-| `Alarm`    | api를 통해 방명록 댓글 가져오는 기능 |
-| `Modal`    | 방명록 댓글 삭제 |
-| `News`    | 방명록 댓글 삭제 |
-| `CreateAccountHistory.js`    | api 호출 늦어졌을 때 로딩 화면 나올 수 있도록 설정하는 기능 |
-| `Title.js`    | 로그아웃 기능 |
-| `Total.js`    | 로그인 유무에 따른 메인 페이지 구성 변경 기능 |
+| `AccountHistory`    | 입출금 내역 관리 폴더  |
+| `Alarm`    | Main 페이지에 배치되는 알림 기능 관리 폴더 |
+| `Modal`    | 알람 기능과 목표 알림 기능을 추가할 수 있는 모달 관련 폴더 |
+| `News`    | NewApi를 활용하여 경제 뉴스 추천 기능 관리 폴더 |
+| `CreateAccountHistory.js`    | 입출금 등록 기능 파일 |
+| `GraphAccount.js`    | 등록된 입출금 내역을 Bar 그래프로 변환 기능 파일 |
+| `Title.js`    | Main 화면의 Header 부분 관리 파일  |
+| `Total.js`    | 등록된 입출금 내역을 총 잔액, 총 입금, 총 출금으로 나눈 관리 기능 |
 
 **src/pages**
 
@@ -121,71 +122,203 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 | 파일명     | 역할             |
 | ---------- | ---------------- |
-| `usePromise.js` | 쿠키 등록, 삭제, 반환하는 훅 |
+| `usePromise.js` | api가 주는 비동기 데이터를 비동기적(Promise)으로 받아올 수 있게 도와주는 훅 |
 
 **src/api**
 
 | 파일명     | 역할             |
 | ---------- | ---------------- |
-| `getData.js` | 쿠키 등록, 삭제, 반환하는 훅 |
+| `getData.js` | 데이터를 받아오는 api 모음 파일 |
 
 ### 반응형
-1. media query로 반응형 웹 개발
+1. media query로 반응형 웹 및 모바일 개발
+2. 모바일(기본), 웹(1200px 이상, 1600px 이상일 경우로 구분하여 개발)
+``` css
+  @media screen and (min-width: 1200px) {
+    width: 17vw;
+  }
 
-### 댓글 실시간 전송 구현
-1. `useState`를 사용해 초기값을 기존 데이터베이스에 있는 댓글로 설정
-2. 댓글 전송 시, 데이터베이스에 새로운 댓글을 추가
-3. 추가하면 기존 데이터베이스 값이 변경되는 것을 인지한 useState가 화면에 띄우는 댓글을 새로고침 없이 바꿈
+  @media screen and (min-width: 1600px) {
+    width: 250px;
+  }
+```
 
 ### 알림 기능
+1. 상태관리로 `Recoil`을 사용해 데이터 관리
+``` js
+  const alarmDataset = useRecoilValue(alarmDatasetState); // useRecoilValue로 현재 기본값 가져오기
+```
+2. 알람 및 목표 기능 생성을 위한 modal 구현
+``` js
+  const [alarmOpen, setAlarmOpen] = useRecoilState(alarmModalState); // useRecoilState로 모달 기능 오픈 여부 확인
+```
+3. 알람 및 목표 기능 추가 시, 기존 데이터베이스 값이 변경되는 것을 인지한 Recoil이 화면 상 데이터를 Refresh 없이 바꿈
+``` js
+   const [dataset, setDataset] = useRecoilState(alarmDatasetState); // useRecoilState로 기존 데이터 가져오기
+   setDataset([inputs, ...dataset]); // 데이터 수정
+```
 
 ### 입출금 입력 기능 
+1. 입출금 입력 시, Recoil을 통해 데이터 변화 관리
+``` js
+   const [dataset, setDataset] = useRecoilState(datasetState); // useRecoilState로 기존 데이터 가져오기
+   setDataset([inputs, ...dataset]); // 데이터 수정
+```   
+2. axios로 입출금 데이터 Create, Read, Delete 기능 관리
+``` js
+  await axios.post(`${process.env.REACT_APP_API_URL}/accountHistoryData`, inputs) // EX) axios post로 등록
+  ...
+```
 
 ### 경제 뉴스 추천 기능 
+1. NewsApi에서 제공하는 무료 뉴스 데이터 api를 사용하여 경제 뉴스 추천 기능 구현
+2. promise를 사용하여 비동기적으로 데이터 처리
+``` js
+   // NewsContainer.js
+   const [loading, response, error] = usePromise(() => {
+      return axios.get(
+        `https://newsapi.org/v2/top-headlines?country=kr&category=business&apiKey=${process.env.REACT_APP_NEWS_API_KEY}`
+      );
+    }, []);
+    
+    // usePromise.js
+    export default function usePromise(promiseCreator, deps) {
+      // 로딩중 / 완료 / 실패에 대한 상태 관리
+      const [loading, setLoading] = useState(false);
+      const [resolved, setResolved] = useState(null);
+      const [error, setError] = useState(null);
+
+      useEffect(() => {
+        const process = async () => {
+          setLoading(true);
+          try {
+            const resolved = await promiseCreator();
+            setResolved(resolved);
+          } catch (e) {
+            setError(e);
+          }
+          setLoading(false);
+        };
+        process();
+      }, deps);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      return [loading, resolved, error];
+    }
+
+```
 
 ### 입출금 분석 그래프 기능 
+1. React 차트 라이브러리인 Nivo에서 Bar 그래프를 사용하여 입출금 분석 그래프 기능 구현
 
 ### 총 입출금 금액 계산 기능
+1. Recoil을 활용하여 총 입출금 계산 기능 구현
+``` js
+  const [total, setTotal] = useRecoilState(totalState); // total 금액 가져오기
+  let deposit = 0; 
+  let withDraw = 0;
 
+  // 입출금 내역 데이터 계산
+  dataset.map(function (element) {
+    if (element.accountType === "Deposit") {
+      deposit += Number(element.price);
+    } else {
+      withDraw += Number(element.price);
+    }
+  });
+  
+  // 입출금 내역 금액 데이터 변경
+  setTotal(deposit - withDraw);
+```
 
 ## 트러블 슈팅
 
-### 초기 데이터로 bar chart가 잘 그려지는데 나중에 데이터가 추가적으로 입력되면 자동으로 차트에 반영되지 않는 현상이 발생했다.
-
-
+### 입출금 데이터 추가 시, 자동으로 차트에 반영이 되지 않는 이슈
 
 **문제**
-- api 연결 시, CORS 에러가 발생
+- 초기 데이터로 bar chart가 잘 그려지는데 나중에 데이터가 추가적으로 입력되면 자동으로 차트에 반영되지 않는 현상이 발생했다.
 
 **해결**
-- 서버와 클라이언트 주소가 일치하지 않아 발생한 에러로 판단
-- `Package.json에서 Proxy`에 주소를 설정하여 cors에러 해결 -> 하지만 dev 서버에서만 가능하고 실제 배포된 서버로 했을 시 CORS에러가 뜸 
-- => 조사해보니 localhost로 서버를 띄울 때만 가능한 방법
--  `backend`에서 다음과 같이 CORS 설정하여 해결
+1. 원인 분석
+``` js
+  // 기존 코드
+  const dataset = useRecoilValue(datasetState);
+  const filterDataset = dataset.filter(
+      (value) => Number(value.year) === today.getFullYear()
+  );
+    
+  // monthData에 값 더하기
+  filterDataset.map((value) => {
+    const month = Number(value.month)-1;
+    if (value.accountType === "Deposit") {
+        monthData[month].totalDeposit += Number(value.price);
+    } else {
+        monthData[month].totalWithdraw += Number(value.price);
+    }
+  }
+);
 ```
-app.use(
-  cors({
-    origin: "https://memome.be/",
-    methods: "OPTION, GET, POST, DELETE, PUT",
-    credentials: true,
-   })
-)
-```
-- 정리 : https://ksumin-dev.tistory.com/121
+- 기존 코드로 입력할 때, 리렌더링이 되지 않는 현상이라고 파악하였다.
+- 그래서 useEffect와 useState를 사용해서 코드를 수정했지만 이슈를 해결하지 못하였다.
 
-### axios.delete로 삭제하고, useState를 사용해서 새로고침 하지 않아도 댓글이 삭제 될 수 있도록 구현했다.하지만, 그 후 새로고침을 누르면 다시 댓글이 원상복구 되는 문제점을 파악했다.
+2. 해결방안
+- 리액트에서 리렌더링 되는 조건에 대해서 다시 조사하였다.
+1) 컴포넌트 자신의 state가 변하기
+2) 부모 컴포넌트로부터 받는 props가 변하기
+3) 부모 컴포넌트가 리렌더링 되기
+
+이 중, 부모 컴포넌트로부터 받는 props가 변하기를 적용하여 코드를 수정했더니 이슈를 해결할 수 있었다.
+
+- 자세한 정리 : https://ksumin-dev.tistory.com/133
+
+
+### 데이터 삭제가 되지 않는 이슈
 
 **문제**
-- 구현 목표 : 댓글을 쓰면 새로고침없이 댓글이 바로 화면에 수 있도록 바꾸는 기능 구현
-- 내가 생각한 방법 : useEffect를 써서 comment가 새로 들어올 때마다 업데이트
-- 문제 발생 : 원하는 부분이 화면상에는 잘 구현되었지만 백엔드 터미널을 보니 무한 루프로 돌아감. 
+- 구현 목표 : 댓글 삭제 버튼을 누르는 즉시, 새로고침하지 않고 댓글이 삭제되는 현상 나타나기
+- 내가 생각한 방법 : - axios.delete로 삭제하고, useState를 사용해서 새로고침 하지 않아도 댓글이 삭제 될 수 있도록 구현했다.
+- 문제 발생 : 하지만, 그 후 새로고침을 누르면 다시 댓글이 원상복구 되는 문제점을 파악했다.
 
 **해결**
-- 무한루프의 원인은 useEffect 함수 내에서 setState함수를 호출했기 때문이었음 => useEffect 실행 → setState 실행으로 state 변경 → useEffect 실행 (무한루프)
-- 종속성 배열로 해결하는 방법이 있었지만 기능 특성 상 댓글 전송시 실시간으로 화면에 보여줘야해서 이와 같은 해결은 처음 화면을 렌더링할때만 실행되어 맞지 않는 해결방안임.
-- setState를 useEffect 내부에 넣지않고 이벤트 함수에 넣어주는 방법을 선택
-- onSubmit함수와 댓글 불러오는 함수를 따로 두었던 부분을 아예 onSubmit함수안에 댓글 불러오는 axios를 넣기로 결정하여 문제 히결함
-- 정리 : https://ksumin-dev.tistory.com/123
+- axios delete는 해당 데이터의 id를 찾아 삭제하는 방식으로 운영된다.
+- 하지만, 이번 프로젝트에서 사용한 json-server는 데이터가 입력되는 즉시, id를 반영하지 못하였다.
+- 그렇기에, 임의의 id(기존 데이터 개수 + 1)를 데이터 생성할 때 넣어주었다.
+``` js
+   const [dataset, setDataset] = useRecoilState(datasetState); //기존 데이터
+   const [inputs, setInputs] = useState({
+    accountType: "deposit",
+    year: "",
+    month: "",
+    date: "",
+    accountContents: "",
+    price: 0,
+    id: datasetState.length + 1, // 기존 데이터 개수의 +1을 하여 id 구상
+  });
+```
+- 이렇게 되면 문제점이, 총 3개의 데이터가 있고, id가 2인 데이터를 삭제한 후에 새 데이터를 등록하면 id가 3인 데이터로 생성되고 기존 id가 3이었던 데이터와 충돌하게 되어 등록이 되지 않는다.
+
+- 그래서 id를 숫자가 아닌 무작위의 문자 (uuid)를 생성하여 데이터 생성 시 id로 넣어주어 이슈를 해결하였다.
+``` js
+   function uuidv4() {
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+      /[xy]/g,
+      function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16);
+      }
+    );
+   }
+  
+   const [inputs, setInputs] = useState({
+    accountType: "deposit",
+    year: "",
+    month: "",
+    date: "",
+    accountContents: "",
+    price: 0,
+    id: uuid4(), // 기존 데이터 개수의 +1을 하여 id 구상
+  });
+```
 
 ---
 
@@ -193,6 +326,7 @@ app.use(
 
 ### recoil로 modal 개발하기
 ### json-server
+### promise
 ### styled component 위치 
 - CORS는 추가 HTTP 헤더를 사용하여 한 출처에서 실행 중인 웹 애플리케이션이 다른 출처의 선택한 자원에 접근할 수 있는 권한을 부여하도록 브라우저에게 알려주는 체제
 
