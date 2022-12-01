@@ -41,31 +41,31 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 | Mobile 버전        |   Desktop 버전          |
 | ----------------------- | -------------------------- |
-| ![](./docs/mobile_main.PNG) | ![](./docs/desktop_main.PNG) |
+| ![](./docs/mobile.png) | ![](./docs/desktop.png) |
 
 
 ### 알림 기능
 
 | 알람 설정 기능         | 목표 설정 기능          |
 | --------------------- | ---------------------- |
-| ![](./docs/login.PNG) | ![](./docs/logout.gif) |
+| ![](./docs/alarmModal.gif) | ![](./docs/goalModal.gif) |
 
-| 일정 기간 전 알람 기능  | 일정 기간 후 알람 기능         | 목표 금액 이전 알람 기능  | 목표 금액 이후 알람 기능      |
-| ---------------------- | ----------------------------- | ---------------------- | ----------------------------- |
-| ![](./docs/signup.PNG) | ![](./docs/resetUserInfo.gif) |![](./docs/signup.PNG) | ![](./docs/resetUserInfo.gif)  |
+| 일정 기간 전/후 알람 기능 | 목표 금액 전/후 알람 기능 |
+| ---------------------- | ---------------------- |
+| ![](./docs/alarm.png) | ![](./docs/goal.png) |
 
 ### 입출금 관리 기능
 
-| 총 입출금 금액 입력 시, 총 입출금 금액 계산 및 그래프 실시간 반영             | 
-| ----------------------------- |
-| ![](./docs/total.gif) | 
+| 총 입출금 금액 입력 시, 실시간 반영 | 총 입출금 금액 삭제 시, 실시간 반영 |
+| ----------------------------- | ----------------------------- |
+| ![](./docs/addAccount.gif) | ![](./docs/deleteAccount.gif) | 
  
 
 ### 경제 뉴스 추천 기능
 
 | 경제 뉴스 추천 기능      |
 | ---------------------- |
-| ![](./docs/random.gif) |
+| ![](./docs/recommendNews.gif) |
 
 
 ---
@@ -76,11 +76,11 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 **모바일 버전 레이아웃**
 
-![](./docs/layout.PNG)
+![](./docs/mobileLayout.png)
 
 **데스크탑 버전 레이아웃**
 
-![](./docs/management.PNG)
+![](./docs/desktopLayout.png)
 
 ### 파일별 역할
 
@@ -107,7 +107,7 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 | 파일명     | 역할             |
 | ---------- | ---------------- |
-| `atom.js` | 쿠키 등록, 삭제, 반환하는 훅 |
+| `atom.js` | Recoil로 상태관리할 수 있도록 컴포넌트가 구독할 수 있는 React State 모음 파일 |
 
 **src/hooks**
 
