@@ -8,15 +8,16 @@ import Total from "../components/Total";
 import GoalModal from "../components/Modal/GoalModal";
 import AlarmModal from "../components/Modal/AlarmModal";
 import { useRecoilValue } from "recoil";
-import { alarmModalState, datasetState, goalModalState } from "../store/atom";
+import { alarmModalState, categoryModalState, datasetState, goalModalState } from "../store/atom";
 import NewsContainer from "../components/News/NewsContainer";
+import CategoryModal from "../components/Modal/CategoryModal";
 
 function Main() {
-
-  // 알람 모달, 목표 모달 현재 상태값 가져오기
+  // 알람 모달, 목표 모달, 카테고리 추가 모달 현재 상태값 가져오기
   const currentAlarmState = useRecoilValue(alarmModalState); // 읽기 전용
   const currentGoalState = useRecoilValue(goalModalState); // 읽기 전용
-  
+  const currentCategoryState = useRecoilValue(categoryModalState); // 읽기 전용
+
   // CSS
   const Wrapper = styled.section`
     display: flex;
@@ -64,7 +65,7 @@ function Main() {
       align-items: center;
     }
   `;
-  
+
   const dataset = useRecoilValue(datasetState);
 
   return (
@@ -82,6 +83,7 @@ function Main() {
       </AccountHistoryContainer>
       {currentAlarmState ? <AlarmModal /> : null}
       {currentGoalState ? <GoalModal /> : null}
+      {currentCategoryState ? <CategoryModal /> : null}
     </Wrapper>
   );
 }

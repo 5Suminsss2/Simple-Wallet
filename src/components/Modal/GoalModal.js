@@ -243,7 +243,7 @@ const ModalButtonContainer = styled.div`
   margin-top: 30px;
   text-align: center;
 `;
-const ModalButton = styled.button`
+export const ModalButton = styled.button`
   width: 80px;
   height: 35px;
   margin-right: ${(props) => props.marginRight};

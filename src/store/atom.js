@@ -1,12 +1,13 @@
 // atom.js
 import { atom } from "recoil";
-import { getAccountHistory, getAlarmData, getGoalData } from "../api/getData";
+import { getAccountHistory, getAlarmData, getCategoryData, getGoalData } from "../api/getData";
 
 
 //데이터 내역 불러오기
 const accountHistoryData = getAccountHistory();
 const goalData = getGoalData();
 const alarmData = getAlarmData();
+const categoryData = getCategoryData();
 
 // 알람 모달
 let alarmModalState = atom({
@@ -19,6 +20,12 @@ let goalModalState = atom({
   key: "goalModal",
   default: false,
 });
+
+// 카테고리 추가 모달
+let categoryModalState = atom({
+  key: "categoryModal",
+  default: false
+})
 
 //입출금 내역
 let datasetState = atom({
@@ -44,11 +51,19 @@ let totalState = atom({
   default: 0
 })
 
+// 카테고리 데이터
+let categoryDatasetState = atom({
+  key: "categoryDataset",
+  default: categoryData,
+});
+
 export {
   alarmModalState,
   goalModalState,
+  categoryModalState,
   datasetState,
   goalDatasetState,
   alarmDatasetState,
   totalState,
+  categoryDatasetState,
 };

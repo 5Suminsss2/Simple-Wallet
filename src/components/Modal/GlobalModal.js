@@ -4,7 +4,7 @@ import { alarmModalState, goalModalState } from "../../store/atom";
 import { useRecoilValue } from "recoil";
 
 //CSS
-    const Modal = styled.div`
+    export const Modal = styled.div`
       display: ${(props) => props.display};
       align-items: center;
       position: fixed;
@@ -15,9 +15,10 @@ import { useRecoilValue } from "recoil";
       z-index: 99;
       background-color: rgba(0, 0, 0, 0.6);
     `;
-    const ModalContainer = styled.section`
+
+    export const ModalContainer = styled.section`
       width: 360px;
-      height: 45%;
+      height: ${(props) => props.height || "45%" };
       margin: 0 auto;
       padding: 15px;
       border-radius: 10px;
@@ -25,18 +26,18 @@ import { useRecoilValue } from "recoil";
       animation: modal-show 0.3s;
     `;
 
-    const Header = styled.header`
+    export const Header = styled.header`
         display: flex;
         align-items: center;
         margin: 10px 0;
     `
 
-    const HeaderTitle = styled.div`
+    export const HeaderTitle = styled.div`
         font-weight: 700;
         margin-left: 5px;
     `
 
-    const ModalContents = styled.div`
+    export const ModalContents = styled.div`
       margin-top: 20px;
       padding: 10px;
       border-radius: 10px;

@@ -33,7 +33,7 @@ function AccountHistoryCard({ data }) {
           {data.year}-{month}-{date}
         </AccountHistoryDate>
         <AccountHistoryContents>
-          <AccountHistoryTitle>{data.accountContents}</AccountHistoryTitle>
+          <AccountHistoryTitle>[{data.category}] {data.accountContents}</AccountHistoryTitle>
           {data.accountType === "Deposit" ? (
             <Price>+ {price} 원</Price>
           ) : (

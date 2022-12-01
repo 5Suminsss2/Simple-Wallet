@@ -1,17 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import { datasetState } from "../store/atom";
+import {
+  datasetState,
+  categoryDatasetState,
+  categoryModalState,
+} from "../store/atom";
+import { IconItem } from "./Title";
 
 
 function CreateAccountHistory({onSubmit}) {
 
   const [open, setOpen] = useState(false); // 거래내역 추가 버튼
   const [deposit, setDeposit] = useState(true); // 입출금 버튼
+  const openCategory = useSetRecoilState(categoryModalState); // 카테고리 모달 버튼
 
   // 기존 거래 내역
   const [dataset, setDataset] = useRecoilState(datasetState);
+  const categoryList = useRecoilValue(categoryDatasetState);
 
   function uuidv4() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
@@ -32,6 +39,7 @@ function CreateAccountHistory({onSubmit}) {
     date: "",
     accountContents: "",
     price: 0,
+    category: "",
     id: uuidv4(),
   });
   
@@ -44,6 +52,21 @@ function CreateAccountHistory({onSubmit}) {
       [name]: value,
     });
   };
+
+  // 카테고리 클릭 시 
+  const handleCategory = (e) => {
+    const {value} = e.target;
+    setInputs({
+      ...inputs,
+      ["category"]: value
+    })
+  }
+
+  // 카테고리 추가 버튼 클릭 시
+  const handleCategoryModal = () => {
+    console.log("enter")
+    openCategory(true);
+  }
 
   // 입출금 버튼 눌렀을 때
   const handleDeposit = () => {
@@ -154,6 +177,25 @@ function CreateAccountHistory({onSubmit}) {
                   max="31"
                 />
               </DateInputBox>
+              <Label>
+                카테고리
+                <CategoryButton
+                  type="button"
+                  onClick={() => {
+                    handleCategoryModal();
+                  }}
+                >
+                  +
+                </CategoryButton>
+              </Label>
+              <Select onChange={handleCategory}>
+                <option>--카테고리를 선택하세요--</option>
+                {categoryList.map((item) => (
+                  <option value={item.label} key={item.id}>
+                    {item.label}
+                  </option>
+                ))}
+              </Select>
               <Label>내용</Label>
               {deposit === true ? (
                 <ContentButtonBox>
@@ -253,6 +295,25 @@ function CreateAccountHistory({onSubmit}) {
                   max="31"
                 />
               </DateInputBox>
+              <Label>
+                카테고리
+                <CategoryButton
+                  type="button"
+                  onClick={() => {
+                    handleCategoryModal();
+                  }}
+                >
+                  +
+                </CategoryButton>
+              </Label>
+              <Select onChange={handleCategory}>
+                <option>--카테고리를 선택하세요--</option>
+                {categoryList.map((item) => (
+                  <option value={item.label} key={item.id}>
+                    {item.label}
+                  </option>
+                ))}
+              </Select>
               <Label>내용</Label>
               {deposit === true ? (
                 <ContentButtonBox>
@@ -309,6 +370,8 @@ const CreateAccountHistoryContainer = styled.div`
   margin-bottom: 30px;
   border-radius: 10px;
   background: linear-gradient(45deg, #98a8f0, #b09bf0);
+  overflow: scroll;
+  overflow-x: hidden;
 
   @media screen and (min-width: 1200px) {
     width: 23vw;
@@ -324,6 +387,15 @@ const CreateAccountHistoryContainer = styled.div`
   }
   @media screen and (max-width: 1200px) {
     display: ${(props) => props.display || "block"};
+  }
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 1px white;
   }
 `;
 
@@ -451,6 +523,51 @@ const ContentButton = styled.button`
   &:hover {
     background-color: #d3d3d3;
   }
+`;
+
+// 카테고리 CSS
+// 참고 : https://codepen.io/daleseo/pen/VwaPzMy
+const Select = styled.select`
+
+  width: 100%;
+
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  color: #444;
+  background-color: #fff;
+
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  margin-bottom: 10px;
+
+  border: 1px solid #aaa;
+  border-radius: 0.5em;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+
+  &:hover {
+    border-color: #888;
+  }
+
+  &:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+  }
+`;
+
+const CategoryButton = styled.button`
+  margin-bottom: 5px;
+  background-color: #fff;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
 `;
 
 export default CreateAccountHistory;
