@@ -107,7 +107,7 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 | 파일명     | 역할             |
 | ---------- | ---------------- |
-| `atom.js` | 쿠키 등록, 삭제, 반환하는 훅 |
+| `atom.js` | Recoil로 상태관리할 수 있도록 컴포넌트가 구독할 수 있는 React State 모음 파일 |
 
 **src/hooks**
 
