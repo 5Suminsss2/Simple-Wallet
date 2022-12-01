@@ -18,6 +18,7 @@ const NewsContents = styled.div`
   margin-left: 20px;
   font-size: 13px;
   overflow: hidden;
+  line-height: 130%;
 `;
 
 function NewsItems({ article }) {
