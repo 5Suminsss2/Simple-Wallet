@@ -2,12 +2,219 @@
   "accountHistoryData": [
     {
       "accountType": "Deposit",
-      "year": "",
-      "month": "",
-      "date": "",
-      "accountContents": "",
-      "price": 0,
+      "year": "2022",
+      "month": "1",
+      "date": "1",
+      "accountContents": "새뱃돈",
+      "price": 100000,
       "id": 19
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "1",
+      "date": "10",
+      "accountContents": "간장 치킨",
+      "price": 21000,
+      "id": 190
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "2",
+      "date": "1",
+      "accountContents": "아르바이트 2월 월급",
+      "price": 150000,
+      "id": 19111
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "2",
+      "date": "10",
+      "accountContents": "영화 관람 및 저녁 식사",
+      "price": 81000,
+      "id": 190111111
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "3",
+      "date": "10",
+      "accountContents": "복권 당첨",
+      "price": 50000,
+      "id": 1943
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "3",
+      "date": "11",
+      "accountContents": "부산 여행 기념 외식",
+      "price": 60000,
+      "id": 19023234
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "4",
+      "date": "16",
+      "accountContents": "아르바이트 4월 월급",
+      "price": 150000,
+      "id": 1913123
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "4",
+      "date": "10",
+      "accountContents": "OTT 결제",
+      "price": 12000,
+      "id": 1901112323
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "5",
+      "date": "10",
+      "accountContents": "아르바이트 5월 월급",
+      "price": 100000,
+      "id": 1923
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "5",
+      "date": "19",
+      "accountContents": "시집 구매",
+      "price": 16000,
+      "id": 190242
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "6",
+      "date": "12",
+      "accountContents": "용돈",
+      "price": 50000,
+      "id": 1915687
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "6",
+      "date": "20",
+      "accountContents": "친구들과 저녁 모임",
+      "price": 21000,
+      "id": 19013546
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "7",
+      "date": "10",
+      "accountContents": "아르바이트 7월 월급",
+      "price": 160000,
+      "id": 19123456
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "7",
+      "date": "18",
+      "accountContents": "모자 구매",
+      "price": 31000,
+      "id": 190465789
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "8",
+      "date": "10",
+      "accountContents": "식당 아르바이트 단기 알바",
+      "price": 120000,
+      "id": 191234562323
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "8",
+      "date": "18",
+      "accountContents": "자라섬 페스티벌",
+      "price": 81000,
+      "id": 1908494
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "9",
+      "date": "10",
+      "accountContents": "아르바이트 9월 월급",
+      "price": 120000,
+      "id": 1912345624234
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "9",
+      "date": "18",
+      "accountContents": "키보드 구매",
+      "price": 38000,
+      "id": 190242562367
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "10",
+      "date": "10",
+      "accountContents": "아르바이트 10월 월급",
+      "price": 110000,
+      "id": 191200456
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "10",
+      "date": "18",
+      "accountContents": "마우스 구매",
+      "price": 71000,
+      "id": 19065989898
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "11",
+      "date": "10",
+      "accountContents": "아르바이트 11월 월급",
+      "price": 160000,
+      "id": 191234564864156
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "11",
+      "date": "18",
+      "accountContents": "모니터 구매",
+      "price": 180000,
+      "id": 190789789789789
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "12",
+      "date": "10",
+      "accountContents": "아르바이트 12월 월급",
+      "price": 110000,
+      "id": 1912345671123456
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "12",
+      "date": "25",
+      "accountContents": "연말 외식",
+      "price": 131000,
+      "id": 190789456123566
     }
   ],
   "alarmData": [
@@ -19,6 +226,15 @@
       "date": "10",
       "alarmContents": "신한 적금 납입",
       "price": 1000000
+    },
+    {
+      "accountType": "Withdraw",
+      "year": "2022",
+      "month": "12",
+      "date": "21",
+      "alarmContents": "하나은행 적금하기",
+      "price": "120000",
+      "id": "a82437a2-b4b9-4b53-8bb8-f1c2705b8f1c"
     }
   ],
   "goalData": [
@@ -32,6 +248,17 @@
       "endDate": "31",
       "goalContents": "제주도 여행가기",
       "price": 500000
+    },
+    {
+      "startYear": "2023",
+      "startMonth": "01",
+      "startDate": "01",
+      "endYear": "2024",
+      "endMonth": "02",
+      "endDate": "01",
+      "goalContents": "콘서트 비용 마련",
+      "price": "120000",
+      "id": "37c7cb66-7689-4b26-8649-db6c3dfc5263"
     }
   ]
 }
