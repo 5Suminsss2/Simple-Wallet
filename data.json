@@ -7,7 +7,8 @@
       "date": "1",
       "accountContents": "새뱃돈",
       "price": 100000,
-      "id": 19
+      "id": 19,
+      "category": "용돈"
     },
     {
       "accountType": "Withdraw",
@@ -16,7 +17,8 @@
       "date": "10",
       "accountContents": "간장 치킨",
       "price": 21000,
-      "id": 190
+      "id": 190,
+      "category": "식비"
     },
     {
       "accountType": "Deposit",
@@ -25,7 +27,8 @@
       "date": "1",
       "accountContents": "아르바이트 2월 월급",
       "price": 150000,
-      "id": 19111
+      "id": 19111,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -34,7 +37,8 @@
       "date": "10",
       "accountContents": "영화 관람 및 저녁 식사",
       "price": 81000,
-      "id": 190111111
+      "id": 190111111,
+      "category": "식비"
     },
     {
       "accountType": "Deposit",
@@ -43,7 +47,8 @@
       "date": "10",
       "accountContents": "복권 당첨",
       "price": 50000,
-      "id": 1943
+      "id": 1943,
+      "category": "기타"
     },
     {
       "accountType": "Withdraw",
@@ -52,7 +57,8 @@
       "date": "11",
       "accountContents": "부산 여행 기념 외식",
       "price": 60000,
-      "id": 19023234
+      "id": 19023234,
+      "category": "식비"
     },
     {
       "accountType": "Deposit",
@@ -60,8 +66,9 @@
       "month": "4",
       "date": "16",
       "accountContents": "아르바이트 4월 월급",
-      "price": 150000,
-      "id": 1913123
+      "price": 60000,
+      "id": 1913123,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -70,7 +77,8 @@
       "date": "10",
       "accountContents": "OTT 결제",
       "price": 12000,
-      "id": 1901112323
+      "id": 1901112323,
+      "category": "여가생활"
     },
     {
       "accountType": "Deposit",
@@ -79,7 +87,8 @@
       "date": "10",
       "accountContents": "아르바이트 5월 월급",
       "price": 100000,
-      "id": 1923
+      "id": 1923,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -88,7 +97,8 @@
       "date": "19",
       "accountContents": "시집 구매",
       "price": 16000,
-      "id": 190242
+      "id": 190242,
+      "category": "여가생활"
     },
     {
       "accountType": "Deposit",
@@ -97,7 +107,8 @@
       "date": "12",
       "accountContents": "용돈",
       "price": 50000,
-      "id": 1915687
+      "id": 1915687,
+      "category": "용돈"
     },
     {
       "accountType": "Withdraw",
@@ -106,7 +117,8 @@
       "date": "20",
       "accountContents": "친구들과 저녁 모임",
       "price": 21000,
-      "id": 19013546
+      "id": 19013546,
+      "category": "식비"
     },
     {
       "accountType": "Deposit",
@@ -114,8 +126,9 @@
       "month": "7",
       "date": "10",
       "accountContents": "아르바이트 7월 월급",
-      "price": 160000,
-      "id": 19123456
+      "price": 80000,
+      "id": 19123456,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -124,7 +137,8 @@
       "date": "18",
       "accountContents": "모자 구매",
       "price": 31000,
-      "id": 190465789
+      "id": 190465789,
+      "category": "기타"
     },
     {
       "accountType": "Deposit",
@@ -132,8 +146,9 @@
       "month": "8",
       "date": "10",
       "accountContents": "식당 아르바이트 단기 알바",
-      "price": 120000,
-      "id": 191234562323
+      "price": 50000,
+      "id": 191234562323,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -142,7 +157,8 @@
       "date": "18",
       "accountContents": "자라섬 페스티벌",
       "price": 81000,
-      "id": 1908494
+      "id": 1908494,
+      "category": "여가생활"
     },
     {
       "accountType": "Deposit",
@@ -150,8 +166,9 @@
       "month": "9",
       "date": "10",
       "accountContents": "아르바이트 9월 월급",
-      "price": 120000,
-      "id": 1912345624234
+      "price": 12000,
+      "id": 1912345624234,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -160,7 +177,8 @@
       "date": "18",
       "accountContents": "키보드 구매",
       "price": 38000,
-      "id": 190242562367
+      "id": 190242562367,
+      "category": "기타"
     },
     {
       "accountType": "Deposit",
@@ -168,8 +186,9 @@
       "month": "10",
       "date": "10",
       "accountContents": "아르바이트 10월 월급",
-      "price": 110000,
-      "id": 191200456
+      "price": 60000,
+      "id": 191200456,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -178,7 +197,8 @@
       "date": "18",
       "accountContents": "마우스 구매",
       "price": 71000,
-      "id": 19065989898
+      "id": 19065989898,
+      "category": "기타"
     },
     {
       "accountType": "Deposit",
@@ -187,7 +207,8 @@
       "date": "10",
       "accountContents": "아르바이트 11월 월급",
       "price": 160000,
-      "id": 191234564864156
+      "id": 191234564864156,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -196,7 +217,8 @@
       "date": "18",
       "accountContents": "모니터 구매",
       "price": 180000,
-      "id": 190789789789789
+      "id": 190789789789789,
+      "category": "기타"
     },
     {
       "accountType": "Deposit",
@@ -205,7 +227,8 @@
       "date": "10",
       "accountContents": "아르바이트 12월 월급",
       "price": 110000,
-      "id": 1912345671123456
+      "id": 1912345671123456,
+      "category": "월급"
     },
     {
       "accountType": "Withdraw",
@@ -214,7 +237,8 @@
       "date": "25",
       "accountContents": "연말 외식",
       "price": 131000,
-      "id": 190789456123566
+      "id": 190789456123566,
+      "category": "식비"
     }
   ],
   "alarmData": [
@@ -261,10 +285,22 @@
       "id": "37c7cb66-7689-4b26-8649-db6c3dfc5263"
     }
   ],
-  "categoryData": [    
+  "categoryData": [
     {
       "id": 1,
       "label": "식비"
+    },
+    {
+      "label": "여가생활",
+      "id": 2
+    },
+    {
+      "label": "월급",
+      "id": 3
+    },
+    {
+      "label": "기타",
+      "id": 4
     }
   ]
 }
