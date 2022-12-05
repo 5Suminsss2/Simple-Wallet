@@ -419,3 +419,7 @@ input 값이 바뀔 때마다 리렌더링이 되고 리렌더링 될 때, Style
 - <a href="https://ksumin-dev.tistory.com/134">[토이프로젝트] Styled-Component에서 구글 폰트 사용하기 </a>
 
 - <a href="https://ksumin-dev.tistory.com/136">[토이프로젝트] 리액트에서 onClick이 자동으로 동작하는 에러 해결 </a>
+
+
+## 앞으로 추가할 기능
+- 카테고리 별 분석 그래프 
