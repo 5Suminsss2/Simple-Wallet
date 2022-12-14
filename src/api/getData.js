@@ -19,3 +19,10 @@ export const getCategoryData = async () => {
   const response = await axios.get(`${process.env.REACT_APP_API_URL}/categoryData`);
   return response.data;
 }
+
+export const getCategoryChartData = async () => {
+  const response = await axios.get(
+    `${process.env.REACT_APP_API_URL}/categoryChartData`
+  );
+  return response.data;
+};

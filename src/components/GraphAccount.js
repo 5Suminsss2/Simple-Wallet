@@ -3,7 +3,8 @@
 
 import { ResponsiveBar } from "@nivo/bar";
 import styled from "styled-components";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import CategoryChart from "./CategoryChart";
 
 function GraphAccount({ dataset }) {
   const today = new Date(); // 오늘 날짜
@@ -24,6 +25,12 @@ function GraphAccount({ dataset }) {
     { month: "12", totalDeposit: 0, totalWithdraw: 0 },
   ];
 
+  const [click, setClick] = useState(false);
+
+  const handleGraph = () => {
+    setClick(!click);
+  }
+
   useEffect(() => {
     // 올해 연도의 데이터만 가져오기
     const filterDataset = dataset.filter(
@@ -41,9 +48,16 @@ function GraphAccount({ dataset }) {
     });
   }, [monthData]);
 
-  return (
+  return click ? (
+    <CategoryChart handleGraph={handleGraph} />
+  ) : (
     <ChartContainer>
-      <ChartTitle>{today.getFullYear()}년 월별 그래프</ChartTitle>
+      <ChartTitle>
+        {today.getFullYear()}년 월별 그래프{" "}
+        <NextButton type="button" onClick={handleGraph}>
+          next
+        </NextButton>
+      </ChartTitle>
       <ResponsiveBar
         data={monthData}
         keys={["totalWithdraw", "totalDeposit"]}
@@ -113,7 +127,7 @@ function GraphAccount({ dataset }) {
 }
 
 // CSS
-const ChartContainer = styled.div`
+export const ChartContainer = styled.div`
   height: 200px;
   width: 340px;
   padding: 15px;
@@ -134,9 +148,20 @@ const ChartContainer = styled.div`
   }
 `;
 
-const ChartTitle = styled.div`
+export const ChartTitle = styled.div`
   color: #2b2b2b;
   font-weight: 700;
+`;
+
+export const NextButton = styled.button`
+  margin-left: 5px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d9d9d9;
+  }
 `;
 
 export default GraphAccount;

@@ -239,6 +239,16 @@
       "price": 131000,
       "id": 190789456123566,
       "category": "식비"
+    },
+    {
+      "accountType": "Deposit",
+      "year": "2022",
+      "month": "11",
+      "date": "2",
+      "accountContents": "닭볶음탕",
+      "price": "10000",
+      "category": "식비",
+      "id": "3a3078ab-54c7-483b-a91d-acfedc9d9bd0"
     }
   ],
   "alarmData": [
@@ -252,27 +262,16 @@
       "price": 1000000
     },
     {
-      "accountType": "Withdraw",
+      "accountType": "Deposit",
       "year": "2022",
       "month": "12",
       "date": "21",
-      "alarmContents": "하나은행 적금하기",
+      "alarmContents": "test",
       "price": "120000",
-      "id": "a82437a2-b4b9-4b53-8bb8-f1c2705b8f1c"
+      "id": "d0cb96ea-2ed6-4a91-8f85-ab8cba087cb2"
     }
   ],
   "goalData": [
-    {
-      "id": 1,
-      "startYear": "2022",
-      "startMonth": "10",
-      "startDate": "10",
-      "endYear": "2022",
-      "endMonth": "12",
-      "endDate": "31",
-      "goalContents": "제주도 여행가기",
-      "price": 500000
-    },
     {
       "startYear": "2023",
       "startMonth": "01",
@@ -283,6 +282,17 @@
       "goalContents": "콘서트 비용 마련",
       "price": "120000",
       "id": "37c7cb66-7689-4b26-8649-db6c3dfc5263"
+    },
+    {
+      "startYear": "2023",
+      "startMonth": "01",
+      "startDate": "01",
+      "endYear": "2024",
+      "endMonth": "02",
+      "endDate": "01",
+      "goalContents": "콘서트 비용 마련",
+      "price": "300000",
+      "id": "264c2922-74c3-413d-8678-214b58faff03"
     }
   ],
   "categoryData": [
@@ -300,6 +310,32 @@
     },
     {
       "label": "기타",
+      "id": 4
+    },
+    {
+      "label": "운동",
+      "id": 5
+    }
+  ],
+  "categoryChartData": [
+    {
+      "id": 1,
+      "category": "여가생활",
+      "total": 150000
+    },
+    {
+      "category": "식비",
+      "total": 360000,
+      "id": 2
+    },
+    {
+      "category": "기타",
+      "total": 10000,
+      "id": 3
+    },
+    {
+      "category": "월급",
+      "total": 120000,
       "id": 4
     }
   ]

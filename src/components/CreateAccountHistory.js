@@ -6,15 +6,17 @@ import {
   datasetState,
   categoryDatasetState,
   categoryModalState,
+  categoryChartDatasetState,
 } from "../store/atom";
-import { IconItem } from "./Title";
 
 
 function CreateAccountHistory({onSubmit}) {
-
   const [open, setOpen] = useState(false); // 거래내역 추가 버튼
   const [deposit, setDeposit] = useState(true); // 입출금 버튼
   const openCategory = useSetRecoilState(categoryModalState); // 카테고리 모달 버튼
+  const [categoryChartData, setCategoryChartData] = useRecoilState(
+    categoryChartDatasetState
+  ); 
 
   // 기존 거래 내역
   const [dataset, setDataset] = useRecoilState(datasetState);
@@ -31,7 +33,7 @@ function CreateAccountHistory({onSubmit}) {
     );
   }
 
-  // 새 거래 내역 
+  // 새 거래 내역
   const [inputs, setInputs] = useState({
     accountType: "deposit",
     year: "",
@@ -42,8 +44,8 @@ function CreateAccountHistory({onSubmit}) {
     category: "",
     id: uuidv4(),
   });
-  
-  const { year, month, date, accountContents, price  } = inputs;
+
+  const { year, month, date, accountContents, price } = inputs;
 
   const onChange = (e) => {
     const { name, value } = e.target;
@@ -53,20 +55,20 @@ function CreateAccountHistory({onSubmit}) {
     });
   };
 
-  // 카테고리 클릭 시 
+  // 카테고리 클릭 시
   const handleCategory = (e) => {
-    const {value} = e.target;
+    const { value } = e.target;
     setInputs({
       ...inputs,
-      ["category"]: value
-    })
-  }
+      ["category"]: value,
+    });
+  };
 
   // 카테고리 추가 버튼 클릭 시
   const handleCategoryModal = () => {
-    console.log("enter")
+    console.log("enter");
     openCategory(true);
-  }
+  };
 
   // 입출금 버튼 눌렀을 때
   const handleDeposit = () => {
@@ -79,8 +81,7 @@ function CreateAccountHistory({onSubmit}) {
   };
 
   // 새 거래내역 등록 버튼 눌렀을 때
-  const handleSubmit = async() => {
-
+  const handleSubmit = async () => {
     // 입력값 확인
     if (year.length < 1) {
       return alert("연도를 입력하세요");
@@ -105,20 +106,43 @@ function CreateAccountHistory({onSubmit}) {
           year: "",
           month: "",
           date: "",
+          category: "",
           accountContents: "",
           price: 0,
         });
         setDeposit(true);
         setOpen(false);
-     }); 
-  }
+
+        let index = categoryChartData.findIndex(
+          (e) => e.category === inputs.category
+        );
+
+        let price = categoryChartData[index].total + Number(inputs.price);
+        let category = inputs.category;
+
+        // 기존 카테고리 객체 삭제
+        let filtered = categoryChartData.filter(
+          (element) => element.category !== inputs.category
+        );
+        filtered.push({ category: category, total: price });
+        setCategoryChartData(filtered);
+
+        axios.put(
+          `${process.env.REACT_APP_API_URL}/categoryChartData/${index + 1}`,
+          { category: category, total: price }
+        );
+      })
+      .then((res) => {
+        console.log("성공");
+      });
+  };
 
   // 새 거래내역 닫기 버튼 눌렀을 때
   const handleCancel = () => {
     setOpen(false);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     // 출입금 버튼 눌렀을 때 거래내역 업데이트
     if (deposit === true) {
       setInputs({
@@ -131,7 +155,7 @@ function CreateAccountHistory({onSubmit}) {
         ["accountType"]: "Withdraw",
       });
     }
-  },[deposit])
+  }, [deposit]);
 
   return (
     <div>

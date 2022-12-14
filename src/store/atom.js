@@ -1,6 +1,6 @@
 // atom.js
 import { atom } from "recoil";
-import { getAccountHistory, getAlarmData, getCategoryData, getGoalData } from "../api/getData";
+import { getAccountHistory, getAlarmData, getCategoryChartData, getCategoryData, getGoalData } from "../api/getData";
 
 
 //데이터 내역 불러오기
@@ -8,6 +8,7 @@ const accountHistoryData = getAccountHistory();
 const goalData = getGoalData();
 const alarmData = getAlarmData();
 const categoryData = getCategoryData();
+const categoryChartData = getCategoryChartData();
 
 // 알람 모달
 let alarmModalState = atom({
@@ -57,6 +58,12 @@ let categoryDatasetState = atom({
   default: categoryData,
 });
 
+// 카테고리 chart 데이터
+let categoryChartDatasetState = atom({
+  key: "categoryChartDataset",
+  default: categoryChartData,
+});
+
 export {
   alarmModalState,
   goalModalState,
@@ -66,4 +73,5 @@ export {
   alarmDatasetState,
   totalState,
   categoryDatasetState,
+  categoryChartDatasetState
 };
