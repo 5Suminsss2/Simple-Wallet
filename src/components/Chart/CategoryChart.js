@@ -1,6 +1,6 @@
 import { ResponsivePie } from "@nivo/pie";
 import { useRecoilValue } from "recoil";
-import { categoryChartDatasetState } from "../store/atom";
+import { categoryChartDatasetState } from "../../store/atom";
 import { ChartContainer, ChartTitle, NextButton } from "./GraphAccount";
 
 function CategoryChart ({handleGraph}){

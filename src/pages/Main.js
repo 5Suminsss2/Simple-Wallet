@@ -1,6 +1,6 @@
 import AccountHistory from "../components/AccountHistory/AccountHistory";
 import Alarm from "../components/Alarm/Alarm";
-import GraphAccount from "../components/GraphAccount";
+import GraphAccount from "../components/Chart/GraphAccount";
 import CreateAccountHistory from "../components/CreateAccountHistory";
 import Title from "../components/Title";
 import styled from "styled-components";
