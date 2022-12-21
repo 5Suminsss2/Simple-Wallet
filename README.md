@@ -21,8 +21,8 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 - React
 - CSS3 & HTML
-- Javascript  ( 변환 전 코드 : https://github.com/5Suminsss2/Simple-Wallet )
-- Typescript 
+- Javascript  
+- Typescript ( 변환 후 코드 : https://github.com/5Suminsss2/Simple-Wallet-TS )
 - Recoil
 - Styled-Component
 - Yarn
