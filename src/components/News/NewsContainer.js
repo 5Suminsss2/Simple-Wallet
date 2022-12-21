@@ -24,7 +24,7 @@ function NewsContainer() {
 
   // 에러가 발생했을 때
   if (error) {
-    return <Container>에러 발생!</Container>;
+    return <Container>배포용은 NewsApi를 제공하지 않습니다.</Container>;
   }
 
   // response 값이 유효할 때
