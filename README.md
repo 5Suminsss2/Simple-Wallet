@@ -2,7 +2,7 @@
 
 > 알차고 간단한 기능이 탑재된 가계부 웹 어플리케이션
 
-> Javacript 코드를 Typescript로 변환한 버전
+> Typescript로 변환하기 전 JS 버전
 
 ## 실행
 
