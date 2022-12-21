@@ -2,6 +2,8 @@
 
 > 알차고 간단한 기능이 탑재된 가계부 웹 어플리케이션
 
+> Javacript 코드를 Typescript로 변환한 버전
+
 ## 실행
 
 ```shell
@@ -14,11 +16,13 @@ json-server --watch data.json --port 4000 // DB server 실행
 
 `localhost:3000` : 로컬 접속
 
+
 ## 사용
 
 - React
 - CSS3 & HTML
-- Javascript
+- Javascript  ( 변환 전 코드 : https://github.com/5Suminsss2/Simple-Wallet )
+- Typescript 
 - Recoil
 - Styled-Component
 - Yarn
@@ -426,3 +430,5 @@ input 값이 바뀔 때마다 리렌더링이 되고 리렌더링 될 때, Style
 
 ## 앞으로 추가할 기능
 - ✅ 카테고리 별 분석 그래프 (완료)
+- ✅ 타입스크립트로 변환 하기 (완료)
+- ⬜ Electron을 사용하여 데스크탑 앱으로 개발 
