@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Simple-Wallet/static/css/main.ad8beb55.css",
-    "main.js": "/Simple-Wallet/static/js/main.7dc382fc.js",
+    "main.js": "/Simple-Wallet/static/js/main.81ec8092.js",
     "index.html": "/Simple-Wallet/index.html",
     "main.ad8beb55.css.map": "/Simple-Wallet/static/css/main.ad8beb55.css.map",
-    "main.7dc382fc.js.map": "/Simple-Wallet/static/js/main.7dc382fc.js.map"
+    "main.81ec8092.js.map": "/Simple-Wallet/static/js/main.81ec8092.js.map"
   },
   "entrypoints": [
     "static/css/main.ad8beb55.css",
-    "static/js/main.7dc382fc.js"
+    "static/js/main.81ec8092.js"
   ]
 }
